@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Annual Cabin Trip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest:      #1D3828;
+      --forest-mid:  #2D5540;
+      --gold:        #D4A52A;
+      --gold-light:  #F0C84A;
+      --parchment:   #F5F0E6;
+      --bark:        #5C3D22;
+      --smoke:       #8A9B8E;
+      --text:        #1C1C1C;
+      --muted:       #6B7280;
+      --white:       #FFFFFF;
+      --shadow:      0 2px 12px rgba(29,56,40,0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--parchment); color: var(--text); }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--forest);
+      color: var(--parchment);
+      padding: 52px 24px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::after {
+      content: '⛰️';
+      position: absolute;
+      font-size: 240px;
+      opacity: 0.04;
+      top: -40px; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .header-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .site-header h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(38px, 9vw, 70px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1.0;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .site-header .tagline {
+      font-size: 15px;
+      color: var(--smoke);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--forest-mid);
+      padding: 14px 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .stat-chip {
+      background: rgba(255,255,255,0.10);
+      color: var(--parchment);
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .stat-chip b { color: var(--gold-light); }
+
+    /* ── GRID CONTAINER ── */
+    .trips-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--forest);
+      white-space: nowrap;
+    }
+    .section-line { flex: 1; height: 1px; background: rgba(29,56,40,0.15); }
+
+    .trips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 16px;
+    }
+
+    /* ── YEAR CARD ── */
+    .trip-card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .trip-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(29,56,40,0.15); }
+    .trip-card.upcoming { border: 2px solid var(--gold); }
+    .trip-card.no-data { opacity: 0.65; }
+
+    .card-year-bg {
+      position: absolute;
+      top: -6px; right: -4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 100px;
+      font-weight: 700;
+      color: var(--forest);
+      opacity: 0.05;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+    .card-body { padding: 20px; position: relative; }
+
+    .card-year {
+      font-family: 'Oswald', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .card-year.upcoming { color: var(--gold); }
+
+    .card-dates { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .card-location { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .card-cabin { font-size: 12px; color: var(--muted); margin-bottom: 12px; min-height: 18px; }
+
+    .card-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .chip {
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      background: #EEF2EE;
+      color: var(--muted);
+    }
+    .chip-green { background: #EAF6EF; color: #2D7A55; }
+
+    .view-btn {
+      display: inline-block;
+      padding: 7px 16px;
+      background: var(--gold);
+      color: var(--forest);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .view-btn:hover { background: var(--gold-light); }
+
+    .card-footer {
+      border-top: 1px dashed rgba(29,56,40,0.14);
+      padding: 10px 20px;
+      background: #FAFAF7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .winner-label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .winner-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--bark);
+    }
+    .winner-name.tbd {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .winner-badge {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
+    /* ── TROPHY TABLE ── */
+    .trophy-section {
+      background: var(--white);
+      padding: 40px 20px;
+      border-top: 1px solid rgba(29,56,40,0.10);
+    }
+    .trophy-inner { max-width: 1100px; margin: 0 auto; }
+    .trophy-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .trophy-entry {
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .t-year { font-family: 'Oswald', sans-serif; font-weight: 600; color: var(--forest); }
+    .t-winner { color: var(--bark); font-weight: 500; }
+    .t-tbd { color: var(--muted); font-style: italic; }
+
+    /* ── TRADITIONS ── */
+    .traditions-section {
+      background: var(--forest);
+      color: var(--parchment);
+      padding: 48px 20px;
+    }
+    .traditions-inner { max-width: 1100px; margin: 0 auto; }
+    .traditions-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .traditions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 12px;
+    }
+    .tradition-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .tradition-icon { font-size: 22px; margin-bottom: 8px; }
+    .tradition-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .tradition-desc { font-size: 12px; color: var(--smoke); line-height: 1.45; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--smoke);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .trips-grid { grid-template-columns: 1fr; }
+      .traditions-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-eyebrow">Est. ~2003 · Big Bear &amp; Beyond · An Unbroken Streak</div>
+  <h1>The Annual<br>Cabin Trip</h1>
+  <p class="tagline">High school friends, a mountain cabin, and 20+ years of bad decisions that keep turning out great.</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-chip"><b>9</b> trips on record</div>
+  <div class="stat-chip">Big Bear <b>7×</b></div>
+  <div class="stat-chip">🏆 3× champ: <b>Holtz</b></div>
+  <div class="stat-chip"><b>10–15</b> guys/year</div>
+  <div class="stat-chip">Next up: <b>Oct 7, 2026</b></div>
+</div>
+
+<div class="trips-container">
+  <div class="section-header">
+    <div class="section-title">Trip Archive</div>
+    <div class="section-line"></div>
+  </div>
+  <div class="trips-grid" id="trips-grid"></div>
+</div>
+
+<div class="trophy-section">
+  <div class="trophy-inner">
+    <div class="section-header" style="margin-bottom:18px">
+      <div class="section-title">🏆 Cabin Bucks Hall of Fame</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="trophy-wrap" id="trophy-table"></div>
+    <p style="font-size:12px;color:var(--muted)">
+      Win the drawing → skip the cabin bill next year. Holtz has done it three times. He's a menace.
+    </p>
+  </div>
+</div>
+
+<div class="traditions-section">
+  <div class="traditions-inner">
+    <div class="traditions-title">The Traditions</div>
+    <div class="traditions-grid">
+      <div class="tradition-card">
+        <div class="tradition-icon">🎟️</div>
+        <div class="tradition-name">Cabin Bucks</div>
+        <div class="tradition-desc">Bet raffle tickets on everything all weekend. One gets drawn Sunday. Winner rides free next year.</div>
+      </div>
+      <div class="tradition-card">
+        <div class="tradition-icon">☕</div>
+        <div class="tradition-name">Morning Coffee</div>
+        <div class="tradition-desc">Deep convos every morning. Religion, politics, money, relationships — nothing is off limits.</div>
+      </div>
+      <div class="tradition-card">
+        <div class="tradition-icon">🚶</div>
+        <div class="tradition-name">Afternoon Walks</div>
+        <div class="tradition-desc">A daily stroll around Big Bear town. More talking, less hiking.</div>
+      </div>
+      <div class="tradition-card">
+        <div class="tradition-icon">🎬</div>
+        <div class="tradition-name">Guy Movie Night</div>
+        <div class="tradition-desc">One evening, one movie. Funny, gory, weird — whatever qualifies as "a guy thing." TBD every year.</div>
+      </div>
+      <div class="tradition-card">
+        <div class="tradition-icon">👕</div>
+        <div class="tradition-name">Trip Shirts</div>
+        <div class="tradition-desc">Custom tees every year. Tony tracks sizes. Wear yours or lose your man card.</div>
+      </div>
+      <div class="tradition-card">
+        <div class="tradition-icon">🥩</div>
+        <div class="tradition-name">Steak Night</div>
+        <div class="tradition-desc">Ribeyes on Friday. Chimichurri optional. Phatz typically sources the beef.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Organized by Tony · Payments: Venmo / PayPal / Apple Cash / Zelle</p>
+  <p style="margin-top:6px"><a href="https://github.com/tonyillig/CabinTrips" target="_blank">github.com/tonyillig/CabinTrips</a></p>
+</footer>
+
+<script>
+const trips = [
+  { year:2026, dates:"Oct 7–11",  location:"Big Bear, CA",  cabin:"Golden Oak Estate",      attendees:"12 conf.", perPerson:475, winner:"TBD",    status:"upcoming", link:"CT2026.html" },
+  { year:2025, dates:"Sep 3–7",   location:"Big Bear, CA",  cabin:"Gold Rush Cabin",         attendees:12,         perPerson:425, winner:"Tony",   status:"complete" },
+  { year:2024, dates:"Nov",       location:"Big Bear, CA",  cabin:null,                       attendees:13,         perPerson:450, winner:"Holtz",  status:"complete", badge:"👑 3× champ" },
+  { year:2023, dates:null,        location:null,             cabin:null,                       attendees:null,       perPerson:null,winner:"Nene",   status:"no-data" },
+  { year:2022, dates:"Nov 9–13",  location:"Big Bear, CA",  cabin:"Grand Lakefront Escape",  attendees:10,         perPerson:475, winner:"Jason",  status:"complete" },
+  { year:2021, dates:"Oct",       location:"Big Bear, CA",  cabin:null,                       attendees:12,         perPerson:480, winner:"Tony",   status:"complete" },
+  { year:2020, dates:"Winter",    location:"Big Bear, CA",  cabin:null,                       attendees:15,         perPerson:425, winner:"Holtz",  status:"complete", badge:"2× champ" },
+  { year:2019, dates:"Fall",      location:"Southern CA",   cabin:null,                       attendees:14,         perPerson:425, winner:"Abrams", status:"complete" },
+  { year:2018, dates:"Fall",      location:"Southern CA",   cabin:null,                       attendees:15,         perPerson:425, winner:"JJ",     status:"complete", badge:"2nd year running" },
+];
+
+const trophy = [
+  {year:2013,winner:"Dela"},{year:2014,winner:"Greg"},{year:2015,winner:"Dela"},
+  {year:2016,winner:"Holtz"},{year:2017,winner:"JJ"},{year:2018,winner:"JJ"},
+  {year:2019,winner:"Abrams"},{year:2020,winner:"Holtz"},{year:2021,winner:"Tony"},
+  {year:2022,winner:"Jason"},{year:2023,winner:"Nene"},{year:2024,winner:"Holtz"},
+  {year:2025,winner:"Tony"},{year:2026,winner:"TBD"},
+];
+
+function renderTrips() {
+  const grid = document.getElementById('trips-grid');
+  trips.forEach(t => {
+    const card = document.createElement('div');
+    card.className = `trip-card ${t.status}`;
+
+    const isUpcoming = t.status === 'upcoming';
+    const isNoData  = t.status === 'no-data';
+    const yearClass = isUpcoming ? 'card-year upcoming' : 'card-year';
+
+    if (isNoData) {
+      card.innerHTML = `
+        <div class="card-year-bg">${t.year}</div>
+        <div class="card-body">
+          <div class="${yearClass}">${t.year}</div>
+          <div class="card-dates">No records on file</div>
+          <div class="card-chips"><div class="chip">data lost to time</div></div>
+        </div>
+        <div class="card-footer">
+          <div>
+            <div class="winner-label">Cabin Drawing Winner</div>
+            <div class="winner-name">🏆 ${t.winner}</div>
+          </div>
+        </div>`;
+    } else {
+      const badge = t.badge ? `<span class="winner-badge"> · ${t.badge}</span>` : '';
+      const winnerDisplay = t.winner === 'TBD'
+        ? `<span class="winner-name tbd">Drawing TBD</span>`
+        : `<span class="winner-name">🏆 ${t.winner}</span>${badge}`;
+
+      card.innerHTML = `
+        <div class="card-year-bg">${t.year}</div>
+        <div class="card-body">
+          <div class="${yearClass}">${t.year}</div>
+          <div class="card-dates">${t.dates || '&nbsp;'}</div>
+          ${t.location ? `<div class="card-location">📍 ${t.location}</div>` : ''}
+          <div class="card-cabin">${t.cabin || ''}</div>
+          <div class="card-chips">
+            ${t.attendees ? `<div class="chip chip-green">👥 ${t.attendees}</div>` : ''}
+            ${t.perPerson ? `<div class="chip">$${t.perPerson}/person</div>` : ''}
+          </div>
+          ${t.link ? `<a href="${t.link}" class="view-btn">View 2026 Trip →</a>` : ''}
+        </div>
+        <div class="card-footer">
+          <div>
+            <div class="winner-label">Cabin Drawing Winner</div>
+            <div>${winnerDisplay}</div>
+          </div>
+        </div>`;
+    }
+    grid.appendChild(card);
+  });
+}
+
+function renderTrophy() {
+  const table = document.getElementById('trophy-table');
+  [...trophy].reverse().forEach(e => {
+    const div = document.createElement('div');
+    div.className = 'trophy-entry';
+    const kings = {Holtz:' 👑', JJ:' ⭐', Dela:' ×2', Tony:' ×2'};
+    const extra = (e.year <= 2025 && e.winner !== 'TBD') ? (kings[e.winner] || '') : '';
+    div.innerHTML = `
+      <span class="t-year">${e.year}</span>
+      <span class="${e.winner==='TBD'?'t-tbd':'t-winner'}">${e.winner}${extra}</span>`;
+    table.appendChild(div);
+  });
+}
+
+renderTrips();
+renderTrophy();
+</script>
+</body>
+</html>

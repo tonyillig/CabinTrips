@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabin Trip 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest:     #1D3828;
+      --forest-mid: #2D5540;
+      --gold:       #D4A52A;
+      --gold-light: #F0C84A;
+      --parchment:  #F5F0E6;
+      --bark:       #5C3D22;
+      --smoke:      #8A9B8E;
+      --text:       #1C1C1C;
+      --muted:      #6B7280;
+      --white:      #FFFFFF;
+      --green:      #2D7A55;
+      --green-bg:   #EAF6EF;
+      --amber:      #C57C2A;
+      --amber-bg:   #FEF3E2;
+      --gray-bg:    #F3F4F6;
+      --shadow:     0 2px 10px rgba(29,56,40,0.09);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--parchment); color: var(--text); }
+
+    /* ── NAV ── */
+    .top-nav {
+      background: var(--forest-mid);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .back-link {
+      color: var(--parchment);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.8;
+      transition: opacity 0.15s;
+    }
+    .back-link:hover { opacity: 1; }
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--forest);
+      color: var(--parchment);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '🏡';
+      position: absolute;
+      font-size: 220px;
+      opacity: 0.04;
+      top: -20px; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(42px, 10vw, 78px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .hero-meta {
+      font-size: 15px;
+      color: var(--smoke);
+      line-height: 1.7;
+      position: relative;
+    }
+    .hero-meta b { color: var(--parchment); }
+
+    /* ── COUNTDOWN ── */
+    .countdown-bar {
+      background: var(--forest-mid);
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .countdown-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 10px;
+    }
+    .countdown-units {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .countdown-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .countdown-unit-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-top: 2px;
+    }
+    .countdown-sep {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      color: rgba(255,255,255,0.15);
+      align-self: center;
+      margin-top: -4px;
+    }
+
+    /* ── STATUS CHIPS ── */
+    .status-strip {
+      background: var(--parchment);
+      border-bottom: 1px solid rgba(29,56,40,0.10);
+      padding: 12px 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .status-chip {
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chip-done  { background: var(--green-bg); color: var(--green); }
+    .chip-todo  { background: var(--amber-bg); color: var(--amber); }
+    .chip-info  { background: #EEF2EE; color: var(--forest); }
+
+    /* ── PAGE LAYOUT ── */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .page-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* ── SECTION CARDS ── */
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .card-head {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(29,56,40,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--forest);
+    }
+    .card-sub { font-size: 12px; color: var(--muted); }
+    .card-body { padding: 20px; }
+
+    /* ── CREW ── */
+    .crew-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px;
+    }
+    .crew-person {
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+    .crew-person .name { font-weight: 600; margin-bottom: 2px; }
+    .crew-person .detail { font-size: 11px; color: var(--muted); }
+    .crew-person .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .confirmed  { background: var(--green-bg); }
+    .confirmed .name { color: var(--forest); }
+    .dot-green  { background: var(--green); }
+    .tbd-person { background: var(--amber-bg); }
+    .tbd-person .name { color: var(--amber); }
+    .dot-amber  { background: var(--amber); }
+    .maybe-person { background: var(--gray-bg); }
+    .maybe-person .name { color: var(--muted); }
+    .dot-gray   { background: #CBD5CB; }
+
+    .crew-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 16px 0 8px;
+    }
+    .crew-section-label:first-child { margin-top: 0; }
+
+    /* ── BUDGET ── */
+    .budget-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .budget-stat {
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+    .budget-stat .val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .budget-stat .lbl { font-size: 11px; color: var(--muted); }
+    .val-green { color: var(--green); }
+    .val-gold  { color: var(--gold); }
+    .val-forest { color: var(--forest); }
+
+    .budget-bar-wrap { margin-bottom: 20px; }
+    .budget-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .budget-bar-track {
+      height: 8px;
+      background: #E5EDE8;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .budget-bar-fill {
+      height: 100%;
+      background: var(--green);
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    .budget-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .budget-table th {
+      text-align: left;
+      padding: 6px 8px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid #E5EDE8;
+    }
+    .budget-table th:not(:first-child) { text-align: right; }
+    .budget-table td { padding: 8px 8px; border-bottom: 1px solid #F0F4F0; vertical-align: middle; }
+    .budget-table td:not(:first-child) { text-align: right; }
+    .budget-table tr:last-child td { border-bottom: none; }
+    .row-total td { font-weight: 600; background: var(--parchment); }
+    .row-total td:first-child { border-radius: 4px 0 0 4px; }
+    .row-total td:last-child  { border-radius: 0 4px 4px 0; }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .pill-done  { background: var(--green-bg); color: var(--green); }
+    .pill-todo  { background: var(--amber-bg); color: var(--amber); }
+    .pill-tbd   { background: var(--gray-bg);  color: var(--muted); }
+
+    /* ── DRIVING ── */
+    .driving-group { margin-bottom: 20px; }
+    .driving-group:last-child { margin-bottom: 0; }
+    .driving-dir {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .car-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #F0F4F0;
+      font-size: 13px;
+    }
+    .car-row:last-child { border-bottom: none; }
+    .car-driver {
+      font-weight: 600;
+      color: var(--forest);
+      min-width: 80px;
+    }
+    .car-passengers { color: var(--text); flex: 1; }
+    .car-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: var(--parchment);
+      border-radius: 4px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .car-tag.warn { background: var(--amber-bg); color: var(--amber); }
+
+    /* ── CABIN DETAILS ── */
+    .cabin-stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .cabin-stat {
+      text-align: center;
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 10px 8px;
+    }
+    .cabin-stat .val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--forest);
+    }
+    .cabin-stat .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+    .amenity-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .amenity-chip {
+      background: var(--green-bg);
+      color: var(--green);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .sleep-list { font-size: 13px; line-height: 1.8; color: var(--text); }
+    .sleep-list span { color: var(--muted); }
+
+    .checkin-note {
+      background: var(--amber-bg);
+      border-left: 3px solid var(--amber);
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+      color: var(--amber);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── SHIRTS ── */
+    .shirt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .shirt-size-box {
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+    .shirt-size { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: var(--forest); }
+    .shirt-count {
+      font-size: 11px; color: var(--muted); margin-top: 2px;
+    }
+    .shirt-names { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+    /* ── TODO ── */
+    .todo-list { list-style: none; }
+    .todo-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      font-size: 13px;
+      border-bottom: 1px solid #F0F4F0;
+      line-height: 1.4;
+    }
+    .todo-list li:last-child { border-bottom: none; }
+    .todo-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .todo-text { flex: 1; }
+    .todo-text b { color: var(--text); }
+    .todo-text small { color: var(--muted); display: block; margin-top: 1px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest);
+      color: var(--smoke);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .budget-summary { grid-template-columns: 1fr 1fr; }
+      .cabin-stat-row { grid-template-columns: repeat(2, 1fr); }
+      .shirt-grid { grid-template-columns: repeat(2, 1fr); }
+      .crew-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="index.html" class="back-link">← All Trips</a>
+  <div class="nav-logo">Annual Cabin Trip</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Big Bear, CA · Golden Oak Estate</div>
+  <h1>Cabin Trip<br>2026</h1>
+  <div class="hero-meta">
+    <b>Wednesday Oct 7 – Sunday Oct 11</b><br>
+    4 nights · 12 confirmed · $475/person
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <div class="countdown-label">Days Until Cabin</div>
+  <div class="countdown-units" id="countdown-display">
+    <div class="countdown-unit"><div class="countdown-num" id="cd-days">—</div><div class="countdown-unit-label">Days</div></div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-hours">—</div><div class="countdown-unit-label">Hours</div></div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-mins">—</div><div class="countdown-unit-label">Mins</div></div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-secs">—</div><div class="countdown-unit-label">Secs</div></div>
+  </div>
+</div>
+
+<div class="status-strip">
+  <div class="status-chip chip-done">✅ Cabin Booked</div>
+  <div class="status-chip chip-done">✅ Lodging Paid</div>
+  <div class="status-chip chip-done">✅ 12 Confirmed</div>
+  <div class="status-chip chip-done">✅ All 11 Payers Paid</div>
+  <div class="status-chip chip-todo">⏳ Dela + Holtz TBD</div>
+  <div class="status-chip chip-todo">⏳ Menu TBD</div>
+  <div class="status-chip chip-todo">⏳ Shirts TBD</div>
+  <div class="status-chip chip-info">💰 $5,852.89 Collected</div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ── LEFT COLUMN ── -->
+  <div class="main-col">
+
+    <!-- CREW -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">👥 The Crew</div>
+        <div class="card-sub">12 confirmed · 2 TBD · 2 maybe</div>
+      </div>
+      <div class="card-body">
+        <div class="crew-section-label">Confirmed — All Paid ✅</div>
+        <div class="crew-grid">
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Tony</div>
+            <div class="detail">🏆 Free · 2025 winner</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Abrams</div>
+            <div class="detail">Paid · Paypal 2/9</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Phatz</div>
+            <div class="detail">Paid · Apple Cash 2/13</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Cooper</div>
+            <div class="detail">Paid · Venmo 2/9</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Greg</div>
+            <div class="detail">Paid · Paypal 2/12</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Jason</div>
+            <div class="detail">Paid · Paypal 2/9</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>JJ</div>
+            <div class="detail">Paid · Venmo 2/9</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Nene</div>
+            <div class="detail">Paid · Venmo 2/10</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Todd</div>
+            <div class="detail">Paid · Paypal 2/9</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Truby</div>
+            <div class="detail">Paid · Paypal 2/9</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Zack</div>
+            <div class="detail">Paid · Paypal 2/13</div>
+          </div>
+          <div class="crew-person confirmed">
+            <div class="name"><span class="status-dot dot-green"></span>Arod</div>
+            <div class="detail">Paid · Paypal 2/9</div>
+          </div>
+        </div>
+
+        <div class="crew-section-label">TBD — Not Paid</div>
+        <div class="crew-grid">
+          <div class="crew-person tbd-person">
+            <div class="name"><span class="status-dot dot-amber"></span>Dela</div>
+            <div class="detail">Awaiting confirmation</div>
+          </div>
+          <div class="crew-person tbd-person">
+            <div class="name"><span class="status-dot dot-amber"></span>Holtz 👑</div>
+            <div class="detail">Awaiting confirmation</div>
+          </div>
+        </div>
+
+        <div class="crew-section-label">Maybe</div>
+        <div class="crew-grid">
+          <div class="crew-person maybe-person">
+            <div class="name"><span class="status-dot dot-gray"></span>Caca</div>
+            <div class="detail">Occasional maybe</div>
+          </div>
+          <div class="crew-person maybe-person">
+            <div class="name"><span class="status-dot dot-gray"></span>Cam</div>
+            <div class="detail">Occasional maybe</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRIVING PLAN -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🚗 Driving Plan</div>
+        <div class="card-sub">Planning in progress</div>
+      </div>
+      <div class="card-body">
+        <div style="background:var(--amber-bg);border-radius:8px;padding:16px;text-align:center;color:var(--amber)">
+          <div style="font-size:24px;margin-bottom:8px">🗺️</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Driving Plan TBD</div>
+          <div style="font-size:13px;line-height:1.5">
+            Car groups, flyer pickups, and arrival days haven't been set yet.<br>
+            This section will update once logistics are sorted.
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Known Logistics</div>
+          <div style="font-size:13px;color:var(--text);line-height:1.8">
+            🛫 Tony flies in from Dallas<br>
+            🛫 Truby flies into ONT (Neil traditionally retrieves)<br>
+            🛫 Arod flies in — pickup TBD<br>
+            🛫 Greg flies — needs return ride from cabin<br>
+            🚗 Neil drives from SLO<br>
+            💰 Driver reimbursement: $125/round trip · $50 electric
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU PLACEHOLDER -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🍽️ Menu</div>
+        <div class="card-sub">Planning in progress</div>
+      </div>
+      <div class="card-body">
+        <div style="background:var(--amber-bg);border-radius:8px;padding:16px;text-align:center;color:var(--amber)">
+          <div style="font-size:24px;margin-bottom:8px">🧑‍🍳</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Menu TBD</div>
+          <div style="font-size:13px;line-height:1.5">
+            New menu needed for 2026 — the 2025 menu is retired.<br>
+            This section will update once the plan is set.
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Known Givens</div>
+          <div style="font-size:13px;color:var(--text);line-height:1.8">
+            🥩 Steak night (Friday) — Phatz sources ribeyes<br>
+            🍕 Pizza run<br>
+            🛒 Main food buy (~$750 budgeted)<br>
+            🏔️ On-mountain fill-in (~$150 budgeted)
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end main-col -->
+
+  <!-- ── SIDEBAR ── -->
+  <div class="sidebar">
+
+    <!-- BUDGET -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">💰 Budget</div>
+        <div class="card-sub">Oct 7–11, 2026</div>
+      </div>
+      <div class="card-body">
+        <div class="budget-summary">
+          <div class="budget-stat">
+            <div class="val val-forest">$5,852</div>
+            <div class="lbl">Total Budget</div>
+          </div>
+          <div class="budget-stat">
+            <div class="val val-green">$2,923</div>
+            <div class="lbl">Spent</div>
+          </div>
+          <div class="budget-stat">
+            <div class="val val-gold">$2,930</div>
+            <div class="lbl">Remaining</div>
+          </div>
+        </div>
+
+        <div class="budget-bar-wrap">
+          <div class="budget-bar-labels">
+            <span>$0</span>
+            <span style="color:var(--green)">$2,922 spent (50%)</span>
+            <span>$5,852</span>
+          </div>
+          <div class="budget-bar-track">
+            <div class="budget-bar-fill" style="width:50%"></div>
+          </div>
+        </div>
+
+        <table class="budget-table">
+          <thead>
+            <tr><th>Item</th><th>Planned</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Paid In (11 × $475)</td><td>$5,225.00</td><td><span class="pill pill-done">collected</span></td></tr>
+            <tr><td>2025 Carryover</td><td>$627.89</td><td><span class="pill pill-done">carryover</span></td></tr>
+            <tr><td>Lodging</td><td>$2,922.63</td><td><span class="pill pill-done">paid ✅</span></td></tr>
+            <tr><td>Main Food Run</td><td>$750.00</td><td><span class="pill pill-todo">pending</span></td></tr>
+            <tr><td>Steaks</td><td>$200.00</td><td><span class="pill pill-todo">pending</span></td></tr>
+            <tr><td>Shirts</td><td>$250.00</td><td><span class="pill pill-todo">pending</span></td></tr>
+            <tr><td>On-Mountain</td><td>$150.00</td><td><span class="pill pill-todo">pending</span></td></tr>
+            <tr><td>Cabin Bucks</td><td>$10.00</td><td><span class="pill pill-todo">pending</span></td></tr>
+            <tr><td>Drivers (4×$125)</td><td>$500.00</td><td><span class="pill pill-todo">trip end</span></td></tr>
+            <tr class="row-total">
+              <td>Expected Surplus</td>
+              <td>$1,070</td>
+              <td><span class="pill pill-tbd">est.</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.5">
+          11 payers × $475 = $5,225 + $627.89 carryover from 2025 = <b>$5,852.89 total budget</b>.<br>
+          Final balance charged ~<b>Sep 23</b> (auto-charged 2 weeks before Oct 7 check-in).
+        </p>
+      </div>
+    </div>
+
+    <!-- CABIN INFO -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🏡 Cabin Details</div>
+        <div class="card-sub">Golden Oak Estate</div>
+      </div>
+      <div class="card-body">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:14px">
+          📍 42438 Golden Oak Rd, Big Bear Lake, CA 92315<br>
+          Castle Glen Estates · 4,600 sq ft · 2 floors<br>
+          Booking ID: <b>611006</b> (Destination Big Bear)
+        </div>
+
+        <div class="cabin-stat-row">
+          <div class="cabin-stat"><div class="val">6</div><div class="lbl">Bedrooms</div></div>
+          <div class="cabin-stat"><div class="val">4</div><div class="lbl">Baths</div></div>
+          <div class="cabin-stat"><div class="val">16</div><div class="lbl">Max occ.</div></div>
+          <div class="cabin-stat"><div class="val">6</div><div class="lbl">Parking</div></div>
+        </div>
+
+        <div class="amenity-chips">
+          <div class="amenity-chip">🛁 Hot Tub</div>
+          <div class="amenity-chip">🎱 Pool Table</div>
+          <div class="amenity-chip">🏓 Ping Pong</div>
+          <div class="amenity-chip">🎯 Foosball</div>
+          <div class="amenity-chip">🎬 Theater</div>
+          <div class="amenity-chip">🔥 Fireplace</div>
+          <div class="amenity-chip">🧖 Sauna</div>
+          <div class="amenity-chip">🍖 Gas Grill</div>
+          <div class="amenity-chip">🚲 Bicycles</div>
+          <div class="amenity-chip">🌊 Lake Views</div>
+          <div class="amenity-chip">📶 Wi-Fi</div>
+          <div class="amenity-chip">👕 Laundry</div>
+        </div>
+
+        <div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Sleeping Arrangements</div>
+        <div class="sleep-list">
+          BR1 (Main): King<br>
+          BR2 (Up): 2 Twin Trundles + Twin/Queen Bunk<br>
+          BR3 (Up): Queen + Twin<br>
+          BR4 (Up): Twin/Twin Bunk<br>
+          BR5 (Lower): 2× Twin/Twin Bunks<br>
+          BR6 (Lower): 2 Queens
+        </div>
+
+        <div class="checkin-note">
+          ⚠️ <b>Check-in:</b> Go straight to the home — no office stop.<br>
+          City ordinance requires ID + selfie photo upload before access info is sent.<br>
+          Balance auto-charged ~<b>Sep 23</b>.
+        </div>
+      </div>
+    </div>
+
+    <!-- SHIRTS -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">👕 Shirt Sizes</div>
+        <div class="card-sub">12 confirmed · order TBD</div>
+      </div>
+      <div class="card-body">
+        <div class="shirt-grid">
+          <div class="shirt-size-box">
+            <div class="shirt-size">S</div>
+            <div class="shirt-count">1 shirt</div>
+            <div class="shirt-names">Albert</div>
+          </div>
+          <div class="shirt-size-box">
+            <div class="shirt-size">M</div>
+            <div class="shirt-count">3 shirts</div>
+            <div class="shirt-names">Tony, Greg, Jason</div>
+          </div>
+          <div class="shirt-size-box">
+            <div class="shirt-size">L</div>
+            <div class="shirt-count">5 shirts</div>
+            <div class="shirt-names">Abrams, Cooper, Truby, Zack, Arod</div>
+          </div>
+          <div class="shirt-size-box">
+            <div class="shirt-size">XL</div>
+            <div class="shirt-count">2 shirts</div>
+            <div class="shirt-names">JJ, Nene</div>
+          </div>
+          <div class="shirt-size-box">
+            <div class="shirt-size" style="color:var(--muted)">2XL</div>
+            <div class="shirt-count">0 (Holtz TBD)</div>
+          </div>
+          <div class="shirt-size-box">
+            <div class="shirt-size">3XL</div>
+            <div class="shirt-count">1 shirt</div>
+            <div class="shirt-names">Todd</div>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:12px">
+          12 shirts for 12 confirmed. Add Dela (L) + Holtz (2XL) if they confirm. Budget: ~$250.<br>
+          <b>Note:</b> The 2026 spreadsheet shows only 11 shirts — Truby (L) was accidentally excluded from the count.
+        </p>
+      </div>
+    </div>
+
+    <!-- OPEN ITEMS -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">📋 Open Items</div>
+      </div>
+      <div class="card-body" style="padding:12px 20px">
+        <ul class="todo-list">
+          <li>
+            <div class="todo-icon">🍽️</div>
+            <div class="todo-text">
+              <b>Plan the 2026 menu</b>
+              <small>New one needed — not reusing 2025</small>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon">🚗</div>
+            <div class="todo-text">
+              <b>Build driving plan</b>
+              <small>Car groups, arrival days, flyer pickups (Truby/Arod/Greg), Holtz timing</small>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon">🤷</div>
+            <div class="todo-text">
+              <b>Dela + Holtz confirm</b>
+              <small>TBD — no payment yet</small>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon">👕</div>
+            <div class="todo-text">
+              <b>Order trip shirts</b>
+              <small>Finalize sizes (Holtz/Dela TBD), pick design, order</small>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon">🎬</div>
+            <div class="todo-text">
+              <b>Pick guy movie night selection</b>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon">🛒</div>
+            <div class="todo-text">
+              <b>Assign food run coordinator</b>
+              <small>Who's doing the main run?</small>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon">💳</div>
+            <div class="todo-text">
+              <b>Final balance charged ~Sep 23</b>
+              <small>Auto-charged 2 weeks before Oct 7 check-in</small>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon">📱</div>
+            <div class="todo-text">
+              <b>Complete city ordinance steps</b>
+              <small>ID + selfie photo upload required for access info</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- end sidebar -->
+
+</div><!-- end page-wrap -->
+
+<footer>
+  <p>Cabin Trip 2026 · Organized by Tony · <a href="https://github.com/tonyillig/CabinTrips" target="_blank">github.com/tonyillig/CabinTrips</a></p>
+  <p style="margin-top:6px"><a href="index.html">← Back to All Trips</a></p>
+</footer>
+
+<script>
+  function updateCountdown() {
+    const target = new Date('2026-10-07T12:00:00');
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('countdown-display').innerHTML =
+        '<div style="color:var(--gold-light);font-family:Oswald,sans-serif;font-size:22px;font-weight:700">🎉 WE\'RE AT THE CABIN</div>';
+      return;
+    }
+    const days  = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs  = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cd-days').textContent  = String(days).padStart(3,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
