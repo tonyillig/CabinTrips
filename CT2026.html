@@ -431,8 +431,7 @@
       line-height: 1.4;
     }
     .todo-list li:last-child { border-bottom: none; }
-    .todo-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-    .todo-text { flex: 1; }
+    .todo-text { flex: 1; cursor: pointer; }
     .todo-text b { color: var(--text); }
     .todo-text small { color: var(--muted); display: block; margin-top: 1px; }
 
@@ -447,11 +446,44 @@
     }
     footer a { color: var(--gold); text-decoration: none; }
 
+    /* ── TODO CHECKLIST ── */
+    .todo-check {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    .todo-list li { cursor: pointer; transition: opacity 0.2s; }
+    .todo-list li.done { opacity: 0.5; }
+    .todo-list li.done .todo-text b { text-decoration: line-through; color: var(--muted); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      .sidebar { order: -1; }
+    }
     @media (max-width: 600px) {
-      .budget-summary { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 28px 16px 24px; }
+      .hero-meta { font-size: 14px; }
+      .countdown-bar { padding: 12px 16px; }
+      .countdown-num { font-size: 26px; }
+      .countdown-sep { font-size: 20px; }
+      .countdown-units { gap: 8px; }
+      .status-strip { padding: 10px 12px; gap: 6px; }
+      .status-chip { font-size: 12px; padding: 4px 10px; }
+      .page-wrap { padding: 14px 12px; gap: 14px; }
+      .card-body { padding: 14px; }
+      .card-head { padding: 12px 14px; }
+      .budget-summary { grid-template-columns: 1fr 1fr 1fr; }
+      .budget-stat { padding: 10px 8px; }
+      .budget-stat .val { font-size: 16px; }
+      .budget-table { font-size: 12px; }
+      .budget-table td, .budget-table th { padding: 6px 4px; }
       .cabin-stat-row { grid-template-columns: repeat(2, 1fr); }
-      .shirt-grid { grid-template-columns: repeat(2, 1fr); }
+      .shirt-grid { grid-template-columns: repeat(3, 1fr); }
       .crew-grid { grid-template-columns: repeat(2, 1fr); }
+      .top-nav { padding: 10px 14px; }
+      footer { padding: 20px 16px; }
     }
   </style>
 </head>
@@ -716,9 +748,10 @@
       </div>
       <div class="card-body">
         <div style="font-size:13px;color:var(--muted);margin-bottom:14px">
-          📍 42438 Golden Oak Rd, Big Bear Lake, CA 92315<br>
+          📍 <a href="https://maps.google.com/?q=42438+Golden+Oak+Rd,+Big+Bear+Lake,+CA+92315" target="_blank" style="color:var(--forest);font-weight:500">42438 Golden Oak Rd, Big Bear Lake, CA 92315</a><br>
           Castle Glen Estates · 4,600 sq ft · 2 floors<br>
-          Booking ID: <b>611006</b> (Destination Big Bear)
+          Booking ID: <b>611006</b> ·
+          <a href="https://www.destinationbigbear.com/Property_detail_v.aspx?propid=1361" target="_blank" style="color:var(--gold);font-weight:500">View on Destination Big Bear ↗</a>
         </div>
 
         <div class="cabin-stat-row">
@@ -800,8 +833,7 @@
           </div>
         </div>
         <p style="font-size:11px;color:var(--muted);margin-top:12px">
-          12 shirts for 12 confirmed. Add Dela (L) + Holtz (2XL) if they confirm. Budget: ~$250.<br>
-          <b>Note:</b> The 2026 spreadsheet shows only 11 shirts — Truby (L) was accidentally excluded from the count.
+          12 shirts confirmed. Add Dela (L) + Holtz (2XL) if they confirm. Budget: ~$250.
         </p>
       </div>
     </div>
@@ -812,61 +844,61 @@
         <div class="card-title">📋 Open Items</div>
       </div>
       <div class="card-body" style="padding:12px 20px">
-        <ul class="todo-list">
-          <li>
-            <div class="todo-icon">🍽️</div>
-            <div class="todo-text">
+        <ul class="todo-list" id="todo-list">
+          <li data-id="menu">
+            <input type="checkbox" class="todo-check" id="td-menu">
+            <label for="td-menu" class="todo-text">
               <b>Plan the 2026 menu</b>
               <small>New one needed — not reusing 2025</small>
-            </div>
+            </label>
           </li>
-          <li>
-            <div class="todo-icon">🚗</div>
-            <div class="todo-text">
+          <li data-id="driving">
+            <input type="checkbox" class="todo-check" id="td-driving">
+            <label for="td-driving" class="todo-text">
               <b>Build driving plan</b>
               <small>Car groups, arrival days, flyer pickups (Truby/Arod/Greg), Holtz timing</small>
-            </div>
+            </label>
           </li>
-          <li>
-            <div class="todo-icon">🤷</div>
-            <div class="todo-text">
+          <li data-id="delaholtz">
+            <input type="checkbox" class="todo-check" id="td-delaholtz">
+            <label for="td-delaholtz" class="todo-text">
               <b>Dela + Holtz confirm</b>
               <small>TBD — no payment yet</small>
-            </div>
+            </label>
           </li>
-          <li>
-            <div class="todo-icon">👕</div>
-            <div class="todo-text">
+          <li data-id="shirts">
+            <input type="checkbox" class="todo-check" id="td-shirts">
+            <label for="td-shirts" class="todo-text">
               <b>Order trip shirts</b>
               <small>Finalize sizes (Holtz/Dela TBD), pick design, order</small>
-            </div>
+            </label>
           </li>
-          <li>
-            <div class="todo-icon">🎬</div>
-            <div class="todo-text">
+          <li data-id="movie">
+            <input type="checkbox" class="todo-check" id="td-movie">
+            <label for="td-movie" class="todo-text">
               <b>Pick guy movie night selection</b>
-            </div>
+            </label>
           </li>
-          <li>
-            <div class="todo-icon">🛒</div>
-            <div class="todo-text">
+          <li data-id="foodrun">
+            <input type="checkbox" class="todo-check" id="td-foodrun">
+            <label for="td-foodrun" class="todo-text">
               <b>Assign food run coordinator</b>
               <small>Who's doing the main run?</small>
-            </div>
+            </label>
           </li>
-          <li>
-            <div class="todo-icon">💳</div>
-            <div class="todo-text">
+          <li data-id="balance">
+            <input type="checkbox" class="todo-check" id="td-balance">
+            <label for="td-balance" class="todo-text">
               <b>Final balance charged ~Sep 23</b>
               <small>Auto-charged 2 weeks before Oct 7 check-in</small>
-            </div>
+            </label>
           </li>
-          <li>
-            <div class="todo-icon">📱</div>
-            <div class="todo-text">
+          <li data-id="ordinance">
+            <input type="checkbox" class="todo-check" id="td-ordinance">
+            <label for="td-ordinance" class="todo-text">
               <b>Complete city ordinance steps</b>
               <small>ID + selfie photo upload required for access info</small>
-            </div>
+            </label>
           </li>
         </ul>
       </div>
@@ -902,6 +934,28 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // Checklist — persist state in localStorage
+  function initChecklist() {
+    document.querySelectorAll('#todo-list li').forEach(li => {
+      const id = li.dataset.id;
+      const cb = li.querySelector('.todo-check');
+      if (localStorage.getItem('ct26_' + id) === '1') {
+        cb.checked = true;
+        li.classList.add('done');
+      }
+      cb.addEventListener('change', function() {
+        if (this.checked) {
+          li.classList.add('done');
+          localStorage.setItem('ct26_' + id, '1');
+        } else {
+          li.classList.remove('done');
+          localStorage.removeItem('ct26_' + id);
+        }
+      });
+    });
+  }
+  initChecklist();
 </script>
 </body>
 </html>
