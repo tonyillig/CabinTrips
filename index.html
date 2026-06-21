@@ -295,9 +295,101 @@
       .trips-grid { grid-template-columns: 1fr; }
       .traditions-grid { grid-template-columns: 1fr 1fr; }
     }
+    /* ── AUTH OVERLAY ── */
+    #auth-overlay {
+      position: fixed; inset: 0;
+      background: var(--forest);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .auth-card {
+      background: var(--parchment);
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .auth-icon { font-size: 48px; margin-bottom: 16px; }
+    .auth-card h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--forest); margin-bottom: 6px;
+    }
+    .auth-card p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+    .auth-input {
+      width: 100%; padding: 12px 16px;
+      border: 2px solid #DDD; border-radius: 8px;
+      font-size: 16px; font-family: 'Inter', sans-serif;
+      outline: none; margin-bottom: 12px;
+      transition: border-color 0.15s;
+      background: var(--white); color: var(--text);
+      text-align: center; letter-spacing: 2px;
+    }
+    .auth-input:focus { border-color: var(--forest); }
+    .auth-input.shake { animation: auth-shake 0.3s ease; border-color: #C44; }
+    .auth-btn {
+      width: 100%; padding: 12px;
+      background: var(--gold); color: var(--forest);
+      border: none; border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .auth-btn:hover { background: var(--gold-light); }
+    .auth-error { margin-top: 12px; font-size: 13px; color: #C44; display: none; }
+    @keyframes auth-shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-6px); }
+      75%      { transform: translateX(6px); }
+    }
   </style>
 </head>
 <body>
+
+<div id="auth-overlay">
+  <div class="auth-card">
+    <div class="auth-icon">⛰️</div>
+    <h2>Annual Cabin Trip</h2>
+    <p>Members only. Enter the password to continue.</p>
+    <input type="password" id="auth-input" class="auth-input" placeholder="••••••••••" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <button class="auth-btn" id="auth-btn">Enter</button>
+    <div class="auth-error" id="auth-error">Wrong password — try again.</div>
+  </div>
+</div>
+<script>
+(function(){
+  const KEY='ct_auth', PASS='flowmaster';
+  const overlay=document.getElementById('auth-overlay');
+  const input=document.getElementById('auth-input');
+  const btn=document.getElementById('auth-btn');
+  const err=document.getElementById('auth-error');
+  function attempt(){
+    if(input.value.trim().toLowerCase()===PASS){
+      localStorage.setItem(KEY,'1');
+      overlay.style.display='none';
+    } else {
+      err.style.display='block';
+      input.classList.add('shake');
+      input.value='';
+      setTimeout(()=>input.classList.remove('shake'),350);
+      setTimeout(()=>input.focus(),50);
+    }
+  }
+  if(localStorage.getItem(KEY)!=='1'){
+    overlay.style.display='flex';
+    setTimeout(()=>input.focus(),100);
+  }
+  btn.addEventListener('click',attempt);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')attempt();});
+})();
+</script>
 
 <header class="site-header">
   <div class="header-eyebrow">Est. ~2003 · Big Bear &amp; Beyond · An Unbroken Streak</div>
