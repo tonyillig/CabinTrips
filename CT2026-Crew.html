@@ -401,6 +401,54 @@
       line-height: 1.5;
     }
 
+    /* ── PHOTOS ── */
+    .photo-carousel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--forest);
+      margin-bottom: 14px;
+    }
+    .photo-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      background-size: cover;
+      background-position: center;
+    }
+    .photo-slide.active { opacity: 1; }
+    .photo-dots {
+      position: absolute;
+      bottom: 10px; left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+    .photo-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+    }
+    .photo-dot.active { background: var(--gold-light); }
+    .photo-cta {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      background: var(--gold);
+      color: var(--forest);
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .photo-cta:hover { background: var(--gold-light); }
+
     /* ── SHIRTS ── */
     .shirt-grid {
       display: grid;
@@ -778,6 +826,27 @@
       </div>
     </div>
 
+    <!-- PHOTOS -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">📸 Trip Photos</div>
+        <div class="card-sub">Shared album</div>
+      </div>
+      <div class="card-body">
+        <div class="photo-carousel" id="photo-carousel">
+          <div class="photo-slide active" style="background-image:url('https://images.unsplash.com/photo-1502784444187-359ac186c5bb?w=800&q=80')"></div>
+          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80')"></div>
+          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1517824806704-9040b037703b?w=800&q=80')"></div>
+          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1518602164578-cd0074062767?w=800&q=80')"></div>
+          <div class="photo-dots" id="photo-dots"></div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5">
+          Pulls live from the <b>CT2026images</b> folder in the GitHub repo — add or swap photos there anytime and this updates automatically. Tap below to view the full album or add your own pics right from your phone.
+        </p>
+        <a href="https://photos.app.goo.gl/Xv5jd2EpZoxEfyts9" target="_blank" class="photo-cta">📷 View &amp; Add Photos</a>
+      </div>
+    </div>
+
   </div><!-- end main-col -->
 
   <!-- ── SIDEBAR ── -->
@@ -974,6 +1043,67 @@
     });
   }
   initChecklist();
+
+  // Photo carousel — fetches live from GitHub repo folder, auto-rotates
+  async function initPhotoCarousel() {
+    const carousel = document.getElementById('photo-carousel');
+    const dotsWrap = document.getElementById('photo-dots');
+    if (!carousel || !dotsWrap) return;
+
+    const REPO = 'tonyillig/CabinTrips';
+    const FOLDER = 'CT2026images';
+    let photoUrls = [];
+
+    try {
+      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}`);
+      if (!res.ok) throw new Error('folder not found');
+      const files = await res.json();
+      photoUrls = files
+        .filter(f => /\.(jpe?g|png|gif|webp)$/i.test(f.name))
+        .map(f => f.download_url);
+    } catch (err) {
+      console.warn('Photo carousel: could not load from GitHub', err);
+    }
+
+    // Fallback placeholders if the folder is empty or unreachable
+    if (photoUrls.length === 0) {
+      photoUrls = [
+        'https://images.unsplash.com/photo-1502784444187-359ac186c5bb?w=800&q=80',
+        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80',
+        'https://images.unsplash.com/photo-1517824806704-9040b037703b?w=800&q=80',
+        'https://images.unsplash.com/photo-1518602164578-cd0074062767?w=800&q=80'
+      ];
+    }
+
+    carousel.querySelectorAll('.photo-slide').forEach(el => el.remove());
+    photoUrls.forEach((url, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'photo-slide' + (i === 0 ? ' active' : '');
+      slide.style.backgroundImage = `url('${url}')`;
+      carousel.insertBefore(slide, dotsWrap);
+    });
+
+    const slides = carousel.querySelectorAll('.photo-slide');
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'photo-dot' + (i === 0 ? ' active' : '');
+      dotsWrap.appendChild(dot);
+    });
+    const dots = dotsWrap.querySelectorAll('.photo-dot');
+
+    if (slides.length > 1) {
+      let idx = 0;
+      setInterval(() => {
+        slides[idx].classList.remove('active');
+        dots[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+        dots[idx].classList.add('active');
+      }, 4000);
+    }
+  }
+  initPhotoCarousel();
 </script>
 </body>
 </html>
