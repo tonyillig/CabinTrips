@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "rev": 1,
+  "updatedAt": "2026-10-08T06:05:00-07:00",
+  "updatedAtLabel": "Oct 8, 6:05am PT",
+  "status": "live",
+  "trip": {
+    "year": 2026,
+    "start": "2026-10-07",
+    "end": "2026-10-11",
+    "location": "Big Bear, CA",
+    "cabin": "Golden Oak Estate",
+    "nights": 4,
+    "perPerson": 475
+  },
+  "confirmedCount": 13,
+  "chips": [
+    {
+      "text": "Cabin Booked",
+      "state": "done"
+    },
+    {
+      "text": "Lodging Paid",
+      "state": "done"
+    },
+    {
+      "text": "13 Confirmed",
+      "state": "done"
+    },
+    {
+      "text": "All 12 Payers Paid",
+      "state": "done"
+    },
+    {
+      "text": "Driving Plan Set",
+      "state": "done"
+    },
+    {
+      "text": "Holtz TBD",
+      "state": "todo"
+    },
+    {
+      "text": "Menu Set",
+      "state": "done"
+    },
+    {
+      "text": "Shirts TBD",
+      "state": "todo"
+    },
+    {
+      "text": "$6,327.89 Collected",
+      "state": "info"
+    }
+  ],
+  "budget": {
+    "paidIn": {
+      "count": 12,
+      "perPerson": 475
+    },
+    "carryover": 627.89,
+    "lines": [
+      {
+        "id": "lodging",
+        "label": "Lodging",
+        "planned": 2922.63,
+        "actual": 2922.63,
+        "status": "paid"
+      },
+      {
+        "id": "mainFood",
+        "label": "Main Food Run",
+        "planned": 750.0,
+        "actual": 1013.96,
+        "status": "open"
+      },
+      {
+        "id": "steaks",
+        "label": "Steaks",
+        "planned": 200.0,
+        "actual": null,
+        "status": "pending"
+      },
+      {
+        "id": "pizza",
+        "label": "Pizza Night",
+        "planned": 150.0,
+        "actual": 133.64,
+        "status": "done"
+      },
+      {
+        "id": "shirts",
+        "label": "Shirts",
+        "planned": 250.0,
+        "actual": null,
+        "status": "pending"
+      },
+      {
+        "id": "onMountain",
+        "label": "On-Mountain",
+        "planned": 150.0,
+        "actual": 28.0,
+        "status": "open"
+      },
+      {
+        "id": "cabinBucks",
+        "label": "Cabin Bucks",
+        "planned": 10.0,
+        "actual": null,
+        "status": "pending"
+      },
+      {
+        "id": "drivers",
+        "label": "Drivers (4×$125 + 1×$50 EV)",
+        "planned": 550.0,
+        "actual": null,
+        "status": "trip-end"
+      }
+    ],
+    "expenses": [
+      {
+        "id": "e1",
+        "date": "2026-09-23",
+        "line": "lodging",
+        "label": "Golden Oak Estate (balance)",
+        "amount": 2922.63
+      },
+      {
+        "id": "e2",
+        "date": "2026-10-07",
+        "line": "mainFood",
+        "label": "Initial food buy",
+        "amount": 1013.96
+      },
+      {
+        "id": "e3",
+        "date": "2026-10-07",
+        "line": "onMountain",
+        "label": "Ice",
+        "amount": 28.0
+      },
+      {
+        "id": "e4",
+        "date": "2026-10-07",
+        "line": "pizza",
+        "label": "Wednesday pizza",
+        "amount": 133.64
+      }
+    ],
+    "reimbursements": {
+      "expenses": {
+        "count": 3,
+        "paidCount": 3,
+        "total": 1175.6
+      },
+      "drivers": {
+        "count": 5,
+        "gasCount": 4,
+        "rate": 125,
+        "electricCount": 1,
+        "electricRate": 50,
+        "total": 550.0,
+        "paidCount": 0
+      }
+    },
+    "totals": {
+      "paidIn": 5700.0,
+      "budget": 6327.89,
+      "spent": 4098.23,
+      "remaining": 2229.66,
+      "projectedCost": 5230.23,
+      "projectedSurplus": 1097.66
+    }
+  },
+  "tripBoard": {
+    "movieNight": null,
+    "announcements": []
+  },
+  "wrapUp": null
+}
