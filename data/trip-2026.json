@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "rev": 1,
-  "updatedAt": "2026-10-08T06:05:00-07:00",
-  "updatedAtLabel": "Oct 8, 6:05am PT",
+  "rev": 2,
+  "updatedAt": "2026-10-08T06:35:38-07:00",
+  "updatedAtLabel": "Oct 8, 6:35am PT",
   "status": "live",
   "trip": {
     "year": 2026,
@@ -21,7 +21,8 @@
     },
     {
       "text": "Lodging Paid",
-      "state": "done"
+      "state": "done",
+      "crewHide": true
     },
     {
       "text": "13 Confirmed",
@@ -29,7 +30,8 @@
     },
     {
       "text": "All 12 Payers Paid",
-      "state": "done"
+      "state": "done",
+      "crewHide": true
     },
     {
       "text": "Driving Plan Set",
@@ -49,7 +51,9 @@
     },
     {
       "text": "$6,327.89 Collected",
-      "state": "info"
+      "state": "info",
+      "crewHide": true,
+      "icon": "💰"
     }
   ],
   "budget": {

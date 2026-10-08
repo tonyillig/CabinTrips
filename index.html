@@ -470,8 +470,9 @@
 </footer>
 
 <script>
-const trips = [
-  { year:2026, dates:"Oct 7–11",  location:"Big Bear, CA",  cabin:"Golden Oak Estate",      attendees:"12 conf.", perPerson:475, winner:"TBD",    status:"upcoming", link:"CT2026-Planning.html" },
+// Built-in fallback. Live values come from data/trips.json (loaded below).
+let trips = [
+  { year:2026, dates:"Oct 7–11",  location:"Big Bear, CA",  cabin:"Golden Oak Estate",      attendees:"13 conf.", perPerson:475, winner:"TBD",    status:"upcoming", link:"CT2026-Planning.html" },
   { year:2025, dates:"Sep 3–7",   location:"Big Bear, CA",  cabin:"Gold Rush Cabin",         attendees:12,         perPerson:425, winner:"Tony",   status:"complete" },
   { year:2024, dates:"Nov",       location:"Big Bear, CA",  cabin:null,                       attendees:13,         perPerson:450, winner:"Holtz",  status:"complete", badge:"👑 3× champ" },
   { year:2023, dates:null,        location:null,             cabin:null,                       attendees:null,       perPerson:null,winner:"Nene",   status:"no-data" },
@@ -482,7 +483,7 @@ const trips = [
   { year:2018, dates:"Fall",      location:"Southern CA",   cabin:null,                       attendees:15,         perPerson:425, winner:"JJ",     status:"complete", badge:"2nd year running" },
 ];
 
-const trophy = [
+let trophy = [
   {year:2013,winner:"Dela"},{year:2014,winner:"Greg"},{year:2015,winner:"Dela"},
   {year:2016,winner:"Holtz"},{year:2017,winner:"JJ"},{year:2018,winner:"JJ"},
   {year:2019,winner:"Abrams"},{year:2020,winner:"Holtz"},{year:2021,winner:"Tony"},
@@ -558,8 +559,21 @@ function renderTrophy() {
   });
 }
 
-renderTrips();
-renderTrophy();
+function renderAll() {
+  document.getElementById('trips-grid').innerHTML = '';
+  document.getElementById('trophy-table').innerHTML = '';
+  renderTrips();
+  renderTrophy();
+}
+
+fetch('data/trips.json?t=' + Date.now(), { cache: 'no-store' })
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(d => {
+    if (Array.isArray(d.trips) && d.trips.length) trips = d.trips;
+    if (Array.isArray(d.trophy) && d.trophy.length) trophy = d.trophy;
+  })
+  .catch(e => console.warn('trips.json unavailable, using built-in list', e))
+  .finally(renderAll);
 </script>
 </body>
 </html>

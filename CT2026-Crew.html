@@ -587,9 +587,21 @@
       25%      { transform: translateX(-6px); }
       75%      { transform: translateX(6px); }
     }
+
+    /* ── LIVE DATA (cabin-live.js) ── */
+    .ct-updated { text-align: center; font-size: 11px; color: var(--smoke); margin-top: 6px; letter-spacing: .3px; }
+    .board-movie { font-size: 14px; margin-bottom: 10px; }
+    .board-when { color: var(--muted); }
+    .board-list { list-style: none; margin: 0; padding: 0; }
+    .board-list li { font-size: 13px; line-height: 1.45; padding: 8px 0; border-top: 1px solid #F0F4F0; }
+    .board-ts { display: block; font-size: 11px; color: var(--muted); }
+    .board-empty { font-size: 13px; color: var(--muted); }
+    .budget-table td.over { color: var(--amber); font-weight: 600; }
+    .exp-title { font-size: 12px; font-weight: 600; color: var(--forest); margin: 16px 0 6px; }
+    .exp-line { font-size: 11px; color: var(--muted); }
   </style>
 </head>
-<body>
+<body data-ct-page="crew" data-ct-year="2026">
 
 <nav class="top-nav">
   <div></div>
@@ -601,7 +613,7 @@
   <h1>Cabin Trip<br>2026</h1>
   <div class="hero-meta">
     <b>Wednesday Oct 7 – Sunday Oct 11</b><br>
-    4 nights · 13 confirmed
+    4 nights · <span id="ct-confirmed">13</span> confirmed
   </div>
 </div>
 
@@ -616,9 +628,10 @@
     <div class="countdown-sep">:</div>
     <div class="countdown-unit"><div class="countdown-num" id="cd-secs">—</div><div class="countdown-unit-label">Secs</div></div>
   </div>
+  <div class="ct-updated" id="ct-updated"></div>
 </div>
 
-<div class="status-strip">
+<div class="status-strip" id="ct-chips">
   <div class="status-chip chip-done">✅ Cabin Booked</div>
   <div class="status-chip chip-done">✅ 13 Confirmed</div>
   <div class="status-chip chip-done">✅ Driving Plan Set</div>
@@ -851,6 +864,18 @@
   <!-- ── SIDEBAR ── -->
   <div class="sidebar">
 
+    <!-- TRIP BOARD (live) -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">📣 Trip Board</div>
+        <div class="card-sub">Live updates</div>
+      </div>
+      <div class="card-body" id="ct-board">
+        <div class="board-movie">🎬 <b>Movie night:</b> <span class="board-when">TBD</span></div>
+        <div class="board-empty">No announcements yet.</div>
+      </div>
+    </div>
+
     <!-- CABIN INFO -->
     <div class="card">
       <div class="card-head">
@@ -1006,7 +1031,7 @@
     const diff = target - now;
     if (diff <= 0) {
       document.getElementById('countdown-display').innerHTML =
-        '<div style="color:var(--gold-light);font-family:Oswald,sans-serif;font-size:22px;font-weight:700">🎉 WE\'RE AT THE CABIN</div>';
+        '<div style="color:var(--gold-light);font-family:Oswald,sans-serif;font-size:22px;font-weight:700">' + (window.CT_BANNER || '🎉 WE\'RE AT THE CABIN') + '</div>';
       return;
     }
     const days  = Math.floor(diff / (1000*60*60*24));
@@ -1104,5 +1129,6 @@
   }
   initPhotoCarousel();
 </script>
+<script src="js/cabin-live.js"></script>
 </body>
 </html>
