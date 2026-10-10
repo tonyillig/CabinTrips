@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "rev": 2,
-  "updatedAt": "2026-10-08T06:35:38-07:00",
-  "updatedAtLabel": "Oct 8, 6:35am PT",
+  "rev": 3,
+  "updatedAt": "2026-10-10T06:56:15-07:00",
+  "updatedAtLabel": "Oct 10, 6:56am PT",
   "status": "live",
   "trip": {
     "year": 2026,
@@ -102,7 +102,7 @@
         "id": "onMountain",
         "label": "On-Mountain",
         "planned": 150.0,
-        "actual": 28.0,
+        "actual": 48.22,
         "status": "open"
       },
       {
@@ -148,13 +148,20 @@
         "line": "pizza",
         "label": "Wednesday pizza",
         "amount": 133.64
+      },
+      {
+        "id": "e5",
+        "date": "2026-10-10",
+        "line": "onMountain",
+        "label": "Grocery fill-in",
+        "amount": 20.22
       }
     ],
     "reimbursements": {
       "expenses": {
-        "count": 3,
-        "paidCount": 3,
-        "total": 1175.6
+        "count": 4,
+        "paidCount": 4,
+        "total": 1195.82
       },
       "drivers": {
         "count": 5,
@@ -169,8 +176,8 @@
     "totals": {
       "paidIn": 5700.0,
       "budget": 6327.89,
-      "spent": 4098.23,
-      "remaining": 2229.66,
+      "spent": 4118.45,
+      "remaining": 2209.44,
       "projectedCost": 5230.23,
       "projectedSurplus": 1097.66
     }
