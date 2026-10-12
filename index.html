@@ -402,7 +402,8 @@
   <div class="stat-chip">Big Bear <b>7×</b></div>
   <div class="stat-chip">🏆 3× champ: <b>Holtz</b></div>
   <div class="stat-chip"><b>10–15</b> guys/year</div>
-  <div class="stat-chip">Next up: <b>Oct 7, 2026</b></div>
+  <div class="stat-chip">2026 champ: <b>Todd</b></div>
+  <div class="stat-chip">Next up: <b>Fall 2027</b></div>
 </div>
 
 <div class="trips-container">
@@ -421,7 +422,7 @@
     </div>
     <div class="trophy-wrap" id="trophy-table"></div>
     <p style="font-size:12px;color:var(--muted)">
-      Win the drawing → skip the cabin bill next year. Holtz has done it three times. He's a menace.
+      Win the drawing → skip the cabin bill next year. Holtz has done it three times. He's a menace. And in 2026, after 20+ years of trying, Todd finally got his name on the board.
     </p>
   </div>
 </div>
@@ -451,14 +452,19 @@
         <div class="tradition-desc">One evening, one movie. Funny, gory, weird — whatever qualifies as "a guy thing." TBD every year.</div>
       </div>
       <div class="tradition-card">
-        <div class="tradition-icon">👕</div>
-        <div class="tradition-name">Trip Shirts</div>
-        <div class="tradition-desc">Custom tees every year. Tony tracks sizes. Wear yours or lose your man card.</div>
+        <div class="tradition-icon">🎁</div>
+        <div class="tradition-name">Cabin Swag</div>
+        <div class="tradition-desc">A keepsake every year: shirts, hats, cups, mugs, dice, collectibles. Never the same thing twice. Keep yours or lose your man card.</div>
       </div>
       <div class="tradition-card">
         <div class="tradition-icon">🥩</div>
         <div class="tradition-name">Steak Night</div>
         <div class="tradition-desc">Ribeyes on Friday. Chimichurri optional. Phatz typically sources the beef.</div>
+      </div>
+      <div class="tradition-card">
+        <div class="tradition-icon">🎲</div>
+        <div class="tradition-name">Epic Game Nights</div>
+        <div class="tradition-desc">Long, complex board games and marathon video game sessions that run well past midnight. Rules disputes included.</div>
       </div>
     </div>
   </div>
@@ -472,24 +478,115 @@
 <script>
 // Built-in fallback. Live values come from data/trips.json (loaded below).
 let trips = [
-  { year:2026, dates:"Oct 7–11",  location:"Big Bear, CA",  cabin:"Golden Oak Estate",      attendees:"13 conf.", perPerson:475, winner:"TBD",    status:"upcoming", link:"CT2026-Planning.html" },
-  { year:2025, dates:"Sep 3–7",   location:"Big Bear, CA",  cabin:"Gold Rush Cabin",         attendees:12,         perPerson:425, winner:"Tony",   status:"complete" },
-  { year:2024, dates:"Nov",       location:"Big Bear, CA",  cabin:null,                       attendees:13,         perPerson:450, winner:"Holtz",  status:"complete", badge:"👑 3× champ" },
-  { year:2023, dates:null,        location:null,             cabin:null,                       attendees:null,       perPerson:null,winner:"Nene",   status:"no-data" },
-  { year:2022, dates:"Nov 9–13",  location:"Big Bear, CA",  cabin:"Grand Lakefront Escape",  attendees:10,         perPerson:475, winner:"Jason",  status:"complete" },
-  { year:2021, dates:"Oct",       location:"Big Bear, CA",  cabin:null,                       attendees:12,         perPerson:480, winner:"Tony",   status:"complete" },
-  { year:2020, dates:"Winter",    location:"Big Bear, CA",  cabin:null,                       attendees:15,         perPerson:425, winner:"Holtz",  status:"complete", badge:"2× champ" },
-  { year:2019, dates:"Fall",      location:"Southern CA",   cabin:null,                       attendees:14,         perPerson:425, winner:"Abrams", status:"complete" },
-  { year:2018, dates:"Fall",      location:"Southern CA",   cabin:null,                       attendees:15,         perPerson:425, winner:"JJ",     status:"complete", badge:"2nd year running" },
+  {
+    "year": 2027,
+    "dates": "Fall 2027 · TBD",
+    "location": "TBD (Big Bear is the usual)",
+    "cabin": "🚧 Planning under construction",
+    "attendees": null,
+    "perPerson": null,
+    "winner": "TBD",
+    "status": "upcoming",
+    "link": "CT2027-Crew.html"
+  },
+  {
+    "year": 2026,
+    "dates": "Oct 7–11",
+    "location": "Big Bear, CA",
+    "cabin": "Golden Oak Estate",
+    "attendees": "13 + Holtz (1 day)",
+    "perPerson": 475,
+    "winner": "Todd",
+    "status": "complete",
+    "link": "CT2026-Crew.html",
+    "badge": "🎉 first win"
+  },
+  {
+    "year": 2025,
+    "dates": "Sep 3–7",
+    "location": "Big Bear, CA",
+    "cabin": "Gold Rush Cabin",
+    "attendees": 12,
+    "perPerson": 425,
+    "winner": "Tony",
+    "status": "complete"
+  },
+  {
+    "year": 2024,
+    "dates": "Nov",
+    "location": "Big Bear, CA",
+    "cabin": null,
+    "attendees": 13,
+    "perPerson": 450,
+    "winner": "Holtz",
+    "status": "complete",
+    "badge": "👑 3× champ"
+  },
+  {
+    "year": 2023,
+    "dates": null,
+    "location": null,
+    "cabin": null,
+    "attendees": null,
+    "perPerson": null,
+    "winner": "Nene",
+    "status": "no-data"
+  },
+  {
+    "year": 2022,
+    "dates": "Nov 9–13",
+    "location": "Big Bear, CA",
+    "cabin": "Grand Lakefront Escape",
+    "attendees": 10,
+    "perPerson": 475,
+    "winner": "Jason",
+    "status": "complete"
+  },
+  {
+    "year": 2021,
+    "dates": "Oct",
+    "location": "Big Bear, CA",
+    "cabin": null,
+    "attendees": 12,
+    "perPerson": 480,
+    "winner": "Tony",
+    "status": "complete"
+  },
+  {
+    "year": 2020,
+    "dates": "Winter",
+    "location": "Big Bear, CA",
+    "cabin": null,
+    "attendees": 15,
+    "perPerson": 425,
+    "winner": "Holtz",
+    "status": "complete",
+    "badge": "2× champ"
+  },
+  {
+    "year": 2019,
+    "dates": "Fall",
+    "location": "Southern CA",
+    "cabin": null,
+    "attendees": 14,
+    "perPerson": 425,
+    "winner": "Abrams",
+    "status": "complete"
+  },
+  {
+    "year": 2018,
+    "dates": "Fall",
+    "location": "Southern CA",
+    "cabin": null,
+    "attendees": 15,
+    "perPerson": 425,
+    "winner": "JJ",
+    "status": "complete",
+    "badge": "2nd year running"
+  }
 ];
 
-let trophy = [
-  {year:2013,winner:"Dela"},{year:2014,winner:"Greg"},{year:2015,winner:"Dela"},
-  {year:2016,winner:"Holtz"},{year:2017,winner:"JJ"},{year:2018,winner:"JJ"},
-  {year:2019,winner:"Abrams"},{year:2020,winner:"Holtz"},{year:2021,winner:"Tony"},
-  {year:2022,winner:"Jason"},{year:2023,winner:"Nene"},{year:2024,winner:"Holtz"},
-  {year:2025,winner:"Tony"},{year:2026,winner:"TBD"},
-];
+let trophy = [{"year": 2013, "winner": "Dela"}, {"year": 2014, "winner": "Greg"}, {"year": 2015, "winner": "Dela"}, {"year": 2016, "winner": "Holtz"}, {"year": 2017, "winner": "JJ"}, {"year": 2018, "winner": "JJ"}, {"year": 2019, "winner": "Abrams"}, {"year": 2020, "winner": "Holtz"}, {"year": 2021, "winner": "Tony"}, {"year": 2022, "winner": "Jason"}, {"year": 2023, "winner": "Nene"}, {"year": 2024, "winner": "Holtz"}, {"year": 2025, "winner": "Tony"}, {"year": 2026, "winner": "Todd"}, {"year": 2027, "winner": "TBD"}];
 
 function renderTrips() {
   const grid = document.getElementById('trips-grid');
@@ -532,7 +629,7 @@ function renderTrips() {
             ${t.attendees ? `<div class="chip chip-green">👥 ${t.attendees}</div>` : ''}
             ${t.perPerson ? `<div class="chip">$${t.perPerson}/person</div>` : ''}
           </div>
-          ${t.link ? `<a href="${t.link}" class="view-btn">View 2026 Trip →</a>` : ''}
+          ${t.link ? `<a href="${t.link}" class="view-btn">View ${t.year} Trip →</a>` : ''}
         </div>
         <div class="card-footer">
           <div>

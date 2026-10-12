@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabin Trip 2027</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest:     #1D3828;
+      --forest-mid: #2D5540;
+      --gold:       #D4A52A;
+      --gold-light: #F0C84A;
+      --parchment:  #F5F0E6;
+      --bark:       #5C3D22;
+      --smoke:      #8A9B8E;
+      --text:       #1C1C1C;
+      --muted:      #6B7280;
+      --white:      #FFFFFF;
+      --green:      #2D7A55;
+      --green-bg:   #EAF6EF;
+      --amber:      #C57C2A;
+      --amber-bg:   #FEF3E2;
+      --gray-bg:    #F3F4F6;
+      --shadow:     0 2px 10px rgba(29,56,40,0.09);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--parchment); color: var(--text); }
+
+    /* ── NAV ── */
+    .top-nav {
+      background: var(--forest-mid);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .back-link {
+      color: var(--parchment);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.8;
+      transition: opacity 0.15s;
+    }
+    .back-link:hover { opacity: 1; }
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--forest);
+      color: var(--parchment);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '🏡';
+      position: absolute;
+      font-size: 220px;
+      opacity: 0.04;
+      top: -20px; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(42px, 10vw, 78px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .hero-meta {
+      font-size: 15px;
+      color: var(--smoke);
+      line-height: 1.7;
+      position: relative;
+    }
+    .hero-meta b { color: var(--parchment); }
+
+    /* ── COUNTDOWN ── */
+    .countdown-bar {
+      background: var(--forest-mid);
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .countdown-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 10px;
+    }
+    .countdown-units {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .countdown-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .countdown-unit-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-top: 2px;
+    }
+    .countdown-sep {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      color: rgba(255,255,255,0.15);
+      align-self: center;
+      margin-top: -4px;
+    }
+
+    /* ── STATUS CHIPS ── */
+    .status-strip {
+      background: var(--parchment);
+      border-bottom: 1px solid rgba(29,56,40,0.10);
+      padding: 12px 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .status-chip {
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chip-done  { background: var(--green-bg); color: var(--green); }
+    .chip-todo  { background: var(--amber-bg); color: var(--amber); }
+    .chip-info  { background: #EEF2EE; color: var(--forest); }
+
+    /* ── PAGE LAYOUT ── */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .page-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* ── SECTION CARDS ── */
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .card-head {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(29,56,40,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--forest);
+    }
+    .card-sub { font-size: 12px; color: var(--muted); }
+    .card-body { padding: 20px; }
+
+    /* ── CREW ── */
+    .crew-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px;
+    }
+    .crew-person {
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+    .crew-person .name { font-weight: 600; margin-bottom: 2px; }
+    .crew-person .detail { font-size: 11px; color: var(--muted); }
+    .crew-person .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .confirmed  { background: var(--green-bg); }
+    .confirmed .name { color: var(--forest); }
+    .dot-green  { background: var(--green); }
+    .tbd-person { background: var(--amber-bg); }
+    .tbd-person .name { color: var(--amber); }
+    .dot-amber  { background: var(--amber); }
+    .maybe-person { background: var(--gray-bg); }
+    .maybe-person .name { color: var(--muted); }
+    .dot-gray   { background: #CBD5CB; }
+
+    .crew-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 16px 0 8px;
+    }
+    .crew-section-label:first-child { margin-top: 0; }
+
+    /* ── BUDGET ── */
+    .budget-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .budget-stat {
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+    .budget-stat .val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .budget-stat .lbl { font-size: 11px; color: var(--muted); }
+    .val-green { color: var(--green); }
+    .val-gold  { color: var(--gold); }
+    .val-forest { color: var(--forest); }
+
+    .budget-bar-wrap { margin-bottom: 20px; }
+    .budget-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .budget-bar-track {
+      height: 8px;
+      background: #E5EDE8;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .budget-bar-fill {
+      height: 100%;
+      background: var(--green);
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    .budget-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .budget-table th {
+      text-align: left;
+      padding: 6px 8px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid #E5EDE8;
+    }
+    .budget-table th:not(:first-child) { text-align: right; }
+    .budget-table td { padding: 8px 8px; border-bottom: 1px solid #F0F4F0; vertical-align: middle; }
+    .budget-table td:not(:first-child) { text-align: right; }
+    .budget-table tr:last-child td { border-bottom: none; }
+    .row-total td { font-weight: 600; background: var(--parchment); }
+    .row-total td:first-child { border-radius: 4px 0 0 4px; }
+    .row-total td:last-child  { border-radius: 0 4px 4px 0; }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .pill-done  { background: var(--green-bg); color: var(--green); }
+    .pill-todo  { background: var(--amber-bg); color: var(--amber); }
+    .pill-tbd   { background: var(--gray-bg);  color: var(--muted); }
+
+    /* ── DRIVING ── */
+    .driving-group { margin-bottom: 20px; }
+    .driving-group:last-child { margin-bottom: 0; }
+    .driving-dir {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .car-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #F0F4F0;
+      font-size: 13px;
+    }
+    .car-row:last-child { border-bottom: none; }
+    .car-driver {
+      font-weight: 600;
+      color: var(--forest);
+      min-width: 80px;
+    }
+    .car-passengers { color: var(--text); flex: 1; }
+    .car-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: var(--parchment);
+      border-radius: 4px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .car-tag.warn { background: var(--amber-bg); color: var(--amber); }
+
+    /* ── CABIN DETAILS ── */
+    .cabin-stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .cabin-stat {
+      text-align: center;
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 10px 8px;
+    }
+    .cabin-stat .val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--forest);
+    }
+    .cabin-stat .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+    .amenity-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .amenity-chip {
+      background: var(--green-bg);
+      color: var(--green);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .sleep-list { font-size: 13px; line-height: 1.8; color: var(--text); }
+    .sleep-list span { color: var(--muted); }
+
+    .checkin-note {
+      background: var(--amber-bg);
+      border-left: 3px solid var(--amber);
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+      color: var(--amber);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── PHOTOS ── */
+    .photo-carousel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--forest);
+      margin-bottom: 14px;
+    }
+    .photo-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      background-size: cover;
+      background-position: center;
+    }
+    .photo-slide.active { opacity: 1; }
+    .photo-dots {
+      position: absolute;
+      bottom: 10px; left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+    .photo-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+    }
+    .photo-dot.active { background: var(--gold-light); }
+    .photo-cta {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      background: var(--gold);
+      color: var(--forest);
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .photo-cta:hover { background: var(--gold-light); }
+
+    /* ── SHIRTS ── */
+    .shirt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .shirt-size-box {
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+    .shirt-size { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: var(--forest); }
+    .shirt-count {
+      font-size: 11px; color: var(--muted); margin-top: 2px;
+    }
+    .shirt-names { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+    /* ── TODO ── */
+    .todo-list { list-style: none; }
+    .todo-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      font-size: 13px;
+      border-bottom: 1px solid #F0F4F0;
+      line-height: 1.4;
+    }
+    .todo-list li:last-child { border-bottom: none; }
+    .todo-text { flex: 1; cursor: pointer; }
+    .todo-text b { color: var(--text); }
+    .todo-text small { color: var(--muted); display: block; margin-top: 1px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest);
+      color: var(--smoke);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── TODO CHECKLIST ── */
+    .todo-check {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    .todo-list li { cursor: pointer; transition: opacity 0.2s; }
+    .todo-list li.done { opacity: 0.5; }
+    .todo-list li.done .todo-text b { text-decoration: line-through; color: var(--muted); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      .sidebar { order: -1; }
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 28px 16px 24px; }
+      .hero-meta { font-size: 14px; }
+      .countdown-bar { padding: 12px 16px; }
+      .countdown-num { font-size: 26px; }
+      .countdown-sep { font-size: 20px; }
+      .countdown-units { gap: 8px; }
+      .status-strip { padding: 10px 12px; gap: 6px; }
+      .status-chip { font-size: 12px; padding: 4px 10px; }
+      .page-wrap { padding: 14px 12px; gap: 14px; }
+      .card-body { padding: 14px; }
+      .card-head { padding: 12px 14px; }
+      .budget-summary { grid-template-columns: 1fr 1fr 1fr; }
+      .budget-stat { padding: 10px 8px; }
+      .budget-stat .val { font-size: 16px; }
+      .budget-table { font-size: 12px; }
+      .budget-table td, .budget-table th { padding: 6px 4px; }
+      .cabin-stat-row { grid-template-columns: repeat(2, 1fr); }
+      .shirt-grid { grid-template-columns: repeat(3, 1fr); }
+      .crew-grid { grid-template-columns: repeat(2, 1fr); }
+      .top-nav { padding: 10px 14px; }
+      footer { padding: 20px 16px; }
+    }
+    /* ── AUTH OVERLAY ── */
+    #auth-overlay {
+      position: fixed; inset: 0;
+      background: var(--forest);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .auth-card {
+      background: var(--parchment);
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .auth-icon { font-size: 48px; margin-bottom: 16px; }
+    .auth-card h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--forest); margin-bottom: 6px;
+    }
+    .auth-card p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+    .auth-input {
+      width: 100%; padding: 12px 16px;
+      border: 2px solid #DDD; border-radius: 8px;
+      font-size: 16px; font-family: 'Inter', sans-serif;
+      outline: none; margin-bottom: 12px;
+      transition: border-color 0.15s;
+      background: var(--white); color: var(--text);
+      text-align: center; letter-spacing: 2px;
+    }
+    .auth-input:focus { border-color: var(--forest); }
+    .auth-input.shake { animation: auth-shake 0.3s ease; border-color: #C44; }
+    .auth-btn {
+      width: 100%; padding: 12px;
+      background: var(--gold); color: var(--forest);
+      border: none; border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .auth-btn:hover { background: var(--gold-light); }
+    .auth-error { margin-top: 12px; font-size: 13px; color: #C44; display: none; }
+    @keyframes auth-shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-6px); }
+      75%      { transform: translateX(6px); }
+    }
+
+    /* ── LIVE DATA (cabin-live.js) ── */
+    .ct-updated { text-align: center; font-size: 11px; color: var(--smoke); margin-top: 6px; letter-spacing: .3px; }
+    .board-movie { font-size: 14px; margin-bottom: 10px; }
+    .board-when { color: var(--muted); }
+    .board-list { list-style: none; margin: 0; padding: 0; }
+    .board-list li { font-size: 13px; line-height: 1.45; padding: 8px 0; border-top: 1px solid #F0F4F0; }
+    .board-ts { display: block; font-size: 11px; color: var(--muted); }
+    .board-empty { font-size: 13px; color: var(--muted); }
+    .budget-table td.over { color: var(--amber); font-weight: 600; }
+    .exp-title { font-size: 12px; font-weight: 600; color: var(--forest); margin: 16px 0 6px; }
+    .exp-line { font-size: 11px; color: var(--muted); }
+
+    .uc-wrap { max-width: 640px; margin: 28px auto 40px; padding: 0 16px; display: grid; gap: 18px; }
+    .uc-badge { display:inline-block; background: var(--amber-bg); color: var(--amber); font-weight:600; font-size:13px; padding:6px 14px; border-radius:20px; margin-bottom:12px; }
+    .uc-big { font-family:'Oswald',sans-serif; font-size:30px; font-weight:700; color:var(--forest); line-height:1.15; margin-bottom:8px; }
+    .uc-text { font-size:14px; line-height:1.6; color:var(--text); }
+    .winner-card { background: var(--forest); color: var(--parchment); border-radius: 14px; padding: 22px 20px; text-align:center; box-shadow: var(--shadow); }
+    .winner-card .trophy { font-size: 40px; }
+    .winner-card .who { font-family:'Oswald',sans-serif; font-size:28px; font-weight:700; color: var(--gold-light); margin:6px 0 4px; letter-spacing:.5px; }
+    .winner-card .why { font-size:14px; opacity:.9; line-height:1.5; }
+    .uc-list { font-size:14px; line-height:1.9; color:var(--text); }
+    .uc-list b { color: var(--forest); }
+  </style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="index.html" class="back-link">← All Trips</a>
+  <div class="nav-logo">Annual Cabin Trip</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">The Streak Continues</div>
+  <h1>Cabin Trip<br>2027</h1>
+  <div class="hero-meta">
+    <b>Fall 2027 · Dates TBD</b><br>
+    Location TBD · Big Bear is the usual
+  </div>
+</div>
+
+<div class="uc-wrap">
+
+  <div class="card">
+    <div class="card-body" style="text-align:center">
+      <div class="uc-badge">🚧 Under Construction</div>
+      <div class="uc-big">Planning starts soon.</div>
+      <div class="uc-text">Dates, cabin, crew, menu and swag will show up here as they get locked in. Check back after the holidays.</div>
+    </div>
+  </div>
+
+  <div class="winner-card">
+    <div class="trophy">🏆</div>
+    <div class="who">TODD RIDES FREE</div>
+    <div class="why">Todd won the 2026 Cabin Bucks drawing (his first win ever), so he doesn't pay for the 2027 cabin.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="card-title">📋 What We Know So Far</div>
+    </div>
+    <div class="card-body">
+      <div class="uc-list">
+        📅 <b>When:</b> Fall 2027, Wednesday to Sunday (4 nights)<br>
+        📍 <b>Where:</b> TBD. Big Bear has been the most reliable<br>
+        👥 <b>Who:</b> The usual suspects. Roll call coming<br>
+        🎟️ <b>Cabin Bucks:</b> Bring your luck. Todd's defending the title
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Cabin Trip 2027 · Organized by Tony · <a href="index.html">← All Trips</a></p>
+</footer>
+
+</body>
+</html>

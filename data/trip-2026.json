@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "rev": 3,
-  "updatedAt": "2026-10-10T06:56:15-07:00",
-  "updatedAtLabel": "Oct 10, 6:56am PT",
-  "status": "live",
+  "rev": 6,
+  "updatedAt": "2026-10-12T09:49:59-07:00",
+  "updatedAtLabel": "Oct 12, 9:49am PT",
+  "status": "complete",
   "trip": {
     "year": 2026,
     "start": "2026-10-07",
@@ -15,6 +15,11 @@
   },
   "confirmedCount": 13,
   "chips": [
+    {
+      "text": "Todd Wins Cabin Bucks!",
+      "state": "done",
+      "icon": "🏆"
+    },
     {
       "text": "Cabin Booked",
       "state": "done"
@@ -38,16 +43,16 @@
       "state": "done"
     },
     {
-      "text": "Holtz TBD",
-      "state": "todo"
+      "text": "Holtz Joined for a Day",
+      "state": "done"
     },
     {
       "text": "Menu Set",
       "state": "done"
     },
     {
-      "text": "Shirts TBD",
-      "state": "todo"
+      "text": "Hats Done",
+      "state": "done"
     },
     {
       "text": "$6,327.89 Collected",
@@ -75,14 +80,14 @@
         "label": "Main Food Run",
         "planned": 750.0,
         "actual": 1013.96,
-        "status": "open"
+        "status": "closed"
       },
       {
         "id": "steaks",
-        "label": "Steaks",
+        "label": "Steaks (in food buy)",
         "planned": 200.0,
         "actual": null,
-        "status": "pending"
+        "status": "closed"
       },
       {
         "id": "pizza",
@@ -93,28 +98,28 @@
       },
       {
         "id": "shirts",
-        "label": "Shirts",
+        "label": "Hats (cabin swag)",
         "planned": 250.0,
-        "actual": null,
-        "status": "pending"
+        "actual": 150.0,
+        "status": "done"
       },
       {
         "id": "onMountain",
         "label": "On-Mountain",
         "planned": 150.0,
-        "actual": 48.22,
-        "status": "open"
+        "actual": 83.22,
+        "status": "closed"
       },
       {
         "id": "cabinBucks",
         "label": "Cabin Bucks",
         "planned": 10.0,
         "actual": null,
-        "status": "pending"
+        "status": "closed"
       },
       {
         "id": "drivers",
-        "label": "Drivers (4×$125 + 1×$50 EV)",
+        "label": "Drivers (amount TBD)",
         "planned": 550.0,
         "actual": null,
         "status": "trip-end"
@@ -155,13 +160,27 @@
         "line": "onMountain",
         "label": "Grocery fill-in",
         "amount": 20.22
+      },
+      {
+        "id": "e6",
+        "date": "2026-10-12",
+        "line": "onMountain",
+        "label": "Mexican Coke",
+        "amount": 35.0
+      },
+      {
+        "id": "e7",
+        "date": "2026-10-12",
+        "line": "shirts",
+        "label": "Trip hats",
+        "amount": 150.0
       }
     ],
     "reimbursements": {
       "expenses": {
-        "count": 4,
-        "paidCount": 4,
-        "total": 1195.82
+        "count": 6,
+        "paidCount": 6,
+        "total": 1380.82
       },
       "drivers": {
         "count": 5,
@@ -176,15 +195,27 @@
     "totals": {
       "paidIn": 5700.0,
       "budget": 6327.89,
-      "spent": 4118.45,
-      "remaining": 2209.44,
-      "projectedCost": 5230.23,
-      "projectedSurplus": 1097.66
+      "spent": 4303.45,
+      "remaining": 2024.44,
+      "projectedCost": 4853.45,
+      "projectedSurplus": 1474.44
     }
   },
   "tripBoard": {
     "movieNight": null,
-    "announcements": []
+    "announcements": [
+      {
+        "ts": "Sun Oct 11",
+        "text": "🏆 Todd wins the 2026 Cabin Bucks drawing — his first win ever. He rides free in 2027!"
+      }
+    ]
   },
-  "wrapUp": null
+  "wrapUp": {
+    "winner": "Todd",
+    "finalSurplus": null,
+    "carryTo2027": null,
+    "pending": [
+      "Driver payouts"
+    ]
+  }
 }

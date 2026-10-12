@@ -57,6 +57,9 @@
     } else if (d.status === 'live') {
       window.CT_BANNER = '🎉 WE\'RE AT THE CABIN';
     }
+    var lbl = document.querySelector('.countdown-label');
+    if (lbl && d.status === 'complete') lbl.textContent = "That's a Wrap";
+    else if (lbl && d.status === 'live') lbl.textContent = 'Right Now';
     var sub = $('ct-updated');
     if (sub && d.updatedAtLabel) sub.textContent = 'Updated ' + d.updatedAtLabel + ' · rev ' + d.rev;
     if (typeof window.updateCountdown === 'function') window.updateCountdown();

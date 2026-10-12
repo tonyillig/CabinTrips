@@ -1,32 +1,175 @@
 {
   "schema": 1,
-  "rev": 1,
-  "updatedAt": "2026-10-08T06:05:00-07:00",
+  "rev": 3,
+  "updatedAt": "2026-10-12T00:00:00-07:00",
   "trips": [
-    { "year": 2026, "dates": "Oct 7–11", "location": "Big Bear, CA", "cabin": "Golden Oak Estate", "attendees": "13 conf.", "perPerson": 475, "winner": "TBD", "status": "upcoming", "link": "CT2026-Planning.html" },
-    { "year": 2025, "dates": "Sep 3–7", "location": "Big Bear, CA", "cabin": "Gold Rush Cabin", "attendees": 12, "perPerson": 425, "winner": "Tony", "status": "complete" },
-    { "year": 2024, "dates": "Nov", "location": "Big Bear, CA", "cabin": null, "attendees": 13, "perPerson": 450, "winner": "Holtz", "status": "complete", "badge": "👑 3× champ" },
-    { "year": 2023, "dates": null, "location": null, "cabin": null, "attendees": null, "perPerson": null, "winner": "Nene", "status": "no-data" },
-    { "year": 2022, "dates": "Nov 9–13", "location": "Big Bear, CA", "cabin": "Grand Lakefront Escape", "attendees": 10, "perPerson": 475, "winner": "Jason", "status": "complete" },
-    { "year": 2021, "dates": "Oct", "location": "Big Bear, CA", "cabin": null, "attendees": 12, "perPerson": 480, "winner": "Tony", "status": "complete" },
-    { "year": 2020, "dates": "Winter", "location": "Big Bear, CA", "cabin": null, "attendees": 15, "perPerson": 425, "winner": "Holtz", "status": "complete", "badge": "2× champ" },
-    { "year": 2019, "dates": "Fall", "location": "Southern CA", "cabin": null, "attendees": 14, "perPerson": 425, "winner": "Abrams", "status": "complete" },
-    { "year": 2018, "dates": "Fall", "location": "Southern CA", "cabin": null, "attendees": 15, "perPerson": 425, "winner": "JJ", "status": "complete", "badge": "2nd year running" }
+    {
+      "year": 2027,
+      "dates": "Fall 2027 · TBD",
+      "location": "TBD (Big Bear is the usual)",
+      "cabin": "🚧 Planning under construction",
+      "attendees": null,
+      "perPerson": null,
+      "winner": "TBD",
+      "status": "upcoming",
+      "link": "CT2027-Crew.html"
+    },
+    {
+      "year": 2026,
+      "dates": "Oct 7–11",
+      "location": "Big Bear, CA",
+      "cabin": "Golden Oak Estate",
+      "attendees": "13 + Holtz (1 day)",
+      "perPerson": 475,
+      "winner": "Todd",
+      "status": "complete",
+      "link": "CT2026-Crew.html",
+      "badge": "🎉 first win"
+    },
+    {
+      "year": 2025,
+      "dates": "Sep 3–7",
+      "location": "Big Bear, CA",
+      "cabin": "Gold Rush Cabin",
+      "attendees": 12,
+      "perPerson": 425,
+      "winner": "Tony",
+      "status": "complete"
+    },
+    {
+      "year": 2024,
+      "dates": "Nov",
+      "location": "Big Bear, CA",
+      "cabin": null,
+      "attendees": 13,
+      "perPerson": 450,
+      "winner": "Holtz",
+      "status": "complete",
+      "badge": "👑 3× champ"
+    },
+    {
+      "year": 2023,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": "Nene",
+      "status": "no-data"
+    },
+    {
+      "year": 2022,
+      "dates": "Nov 9–13",
+      "location": "Big Bear, CA",
+      "cabin": "Grand Lakefront Escape",
+      "attendees": 10,
+      "perPerson": 475,
+      "winner": "Jason",
+      "status": "complete"
+    },
+    {
+      "year": 2021,
+      "dates": "Oct",
+      "location": "Big Bear, CA",
+      "cabin": null,
+      "attendees": 12,
+      "perPerson": 480,
+      "winner": "Tony",
+      "status": "complete"
+    },
+    {
+      "year": 2020,
+      "dates": "Winter",
+      "location": "Big Bear, CA",
+      "cabin": null,
+      "attendees": 15,
+      "perPerson": 425,
+      "winner": "Holtz",
+      "status": "complete",
+      "badge": "2× champ"
+    },
+    {
+      "year": 2019,
+      "dates": "Fall",
+      "location": "Southern CA",
+      "cabin": null,
+      "attendees": 14,
+      "perPerson": 425,
+      "winner": "Abrams",
+      "status": "complete"
+    },
+    {
+      "year": 2018,
+      "dates": "Fall",
+      "location": "Southern CA",
+      "cabin": null,
+      "attendees": 15,
+      "perPerson": 425,
+      "winner": "JJ",
+      "status": "complete",
+      "badge": "2nd year running"
+    }
   ],
   "trophy": [
-    { "year": 2013, "winner": "Dela" },
-    { "year": 2014, "winner": "Greg" },
-    { "year": 2015, "winner": "Dela" },
-    { "year": 2016, "winner": "Holtz" },
-    { "year": 2017, "winner": "JJ" },
-    { "year": 2018, "winner": "JJ" },
-    { "year": 2019, "winner": "Abrams" },
-    { "year": 2020, "winner": "Holtz" },
-    { "year": 2021, "winner": "Tony" },
-    { "year": 2022, "winner": "Jason" },
-    { "year": 2023, "winner": "Nene" },
-    { "year": 2024, "winner": "Holtz" },
-    { "year": 2025, "winner": "Tony" },
-    { "year": 2026, "winner": "TBD" }
+    {
+      "year": 2013,
+      "winner": "Dela"
+    },
+    {
+      "year": 2014,
+      "winner": "Greg"
+    },
+    {
+      "year": 2015,
+      "winner": "Dela"
+    },
+    {
+      "year": 2016,
+      "winner": "Holtz"
+    },
+    {
+      "year": 2017,
+      "winner": "JJ"
+    },
+    {
+      "year": 2018,
+      "winner": "JJ"
+    },
+    {
+      "year": 2019,
+      "winner": "Abrams"
+    },
+    {
+      "year": 2020,
+      "winner": "Holtz"
+    },
+    {
+      "year": 2021,
+      "winner": "Tony"
+    },
+    {
+      "year": 2022,
+      "winner": "Jason"
+    },
+    {
+      "year": 2023,
+      "winner": "Nene"
+    },
+    {
+      "year": 2024,
+      "winner": "Holtz"
+    },
+    {
+      "year": 2025,
+      "winner": "Tony"
+    },
+    {
+      "year": 2026,
+      "winner": "Todd"
+    },
+    {
+      "year": 2027,
+      "winner": "TBD"
+    }
   ]
 }
