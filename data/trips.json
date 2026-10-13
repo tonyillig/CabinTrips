@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "rev": 3,
-  "updatedAt": "2026-10-12T00:00:00-07:00",
+  "rev": 4,
+  "updatedAt": "2026-10-12T19:00:00-07:00",
   "trips": [
     {
       "year": 2027,
@@ -108,6 +108,215 @@
       "winner": "JJ",
       "status": "complete",
       "badge": "2nd year running"
+    },
+    {
+      "year": 2017,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": "JJ",
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2016,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": "Holtz",
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2015,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": "Dela",
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2014,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": "Greg",
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2013,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": "Dela",
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2012,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2011,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2010,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2009,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2008,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2007,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2006,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2005,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2004,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2003,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2002,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2001,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 2000,
+      "dates": null,
+      "location": null,
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "📝 details coming"
+    },
+    {
+      "year": 1999,
+      "dates": "December 1999",
+      "location": "Idyllwild, CA",
+      "cabin": null,
+      "attendees": null,
+      "perPerson": null,
+      "winner": null,
+      "status": "stub",
+      "note": "🏁 The first cabin trip"
     }
   ],
   "trophy": [
