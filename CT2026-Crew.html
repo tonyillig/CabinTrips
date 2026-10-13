@@ -405,7 +405,7 @@
     .photo-carousel {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 4 / 3;
       border-radius: 10px;
       overflow: hidden;
       background: var(--forest);
@@ -841,21 +841,20 @@
     <!-- PHOTOS -->
     <div class="card">
       <div class="card-head">
-        <div class="card-title">📸 Trip Photos</div>
-        <div class="card-sub">Shared album</div>
+        <div class="card-title">📸 2026 Highlights</div>
+        <div class="card-sub">The crew</div>
       </div>
       <div class="card-body">
         <div class="photo-carousel" id="photo-carousel">
-          <div class="photo-slide active" style="background-image:url('https://images.unsplash.com/photo-1502784444187-359ac186c5bb?w=800&q=80')"></div>
-          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80')"></div>
-          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1517824806704-9040b037703b?w=800&q=80')"></div>
-          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1518602164578-cd0074062767?w=800&q=80')"></div>
+          <div class="photo-slide active" style="background-image:url('CT2026images/2026-group-1.jpg')"></div>
+          <div class="photo-slide" style="background-image:url('CT2026images/2026-group-2.jpg')"></div>
+          <div class="photo-slide" style="background-image:url('CT2026images/2026-group-3.jpg')"></div>
           <div class="photo-dots" id="photo-dots"></div>
         </div>
         <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5">
-          Pulls live from the <b>CT2026images</b> folder in the GitHub repo — add or swap photos there anytime and this updates automatically. Tap below to view the full album or add your own pics right from your phone.
+          Golden Oak Estate, Big Bear · October 2026. The full album has every photo and video from the weekend. Download your favorites or add your own.
         </p>
-        <a href="https://photos.app.goo.gl/Xv5jd2EpZoxEfyts9" target="_blank" class="photo-cta">📷 View &amp; Add Photos</a>
+        <a href="https://photos.app.goo.gl/Xv5jd2EpZoxEfyts9" target="_blank" class="photo-cta">📷 Full Album: Photos &amp; Videos</a>
       </div>
     </div>
 
@@ -1000,10 +999,9 @@
     // Fallback placeholders if the folder is empty or unreachable
     if (photoUrls.length === 0) {
       photoUrls = [
-        'https://images.unsplash.com/photo-1502784444187-359ac186c5bb?w=800&q=80',
-        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80',
-        'https://images.unsplash.com/photo-1517824806704-9040b037703b?w=800&q=80',
-        'https://images.unsplash.com/photo-1518602164578-cd0074062767?w=800&q=80'
+        'CT2026images/2026-group-1.jpg',
+        'CT2026images/2026-group-2.jpg',
+        'CT2026images/2026-group-3.jpg'
       ];
     }
 

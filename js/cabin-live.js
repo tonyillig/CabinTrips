@@ -29,7 +29,7 @@
   var ICON = { done: '✅', todo: '⏳', info: 'ℹ️' };
   var PILL = {
     paid: ['pill-done', 'paid ✅'], done: ['pill-done', 'done ✅'], closed: ['pill-done', 'done ✅'],
-    open: ['pill-todo', 'in progress'], pending: ['pill-todo', 'pending'], 'trip-end': ['pill-todo', 'trip end']
+    open: ['pill-todo', 'in progress'], pending: ['pill-todo', 'pending'], 'trip-end': ['pill-todo', 'trip end'], owed: ['pill-todo', 'owed']
   };
 
   function renderChips(d) {
@@ -130,8 +130,9 @@
       var s = b.paidIn.count + ' payers × $' + b.paidIn.perPerson + ' = ' + cents(t.paidIn) + ' + ' + cents(b.carryover) +
         ' carryover = <b>' + cents(t.budget) + ' total budget</b>.';
       if (er) s += '<br>Expense paybacks: ' + er.paidCount + ' of ' + er.count + ' paid (' + cents(er.total) + ').';
-      if (dr) s += '<br>Driver paybacks: ' + dr.count + ' drivers (' + dr.gasCount + ' × $' + dr.rate + ' + ' +
-        dr.electricCount + ' × $' + dr.electricRate + ' EV) = ' + cents(dr.total) + ' · ' + dr.paidCount + ' paid.';
+      if (dr) s += '<br>Driver paybacks: ' + dr.count + ' drivers (' +
+        (dr.breakdown || (dr.gasCount + ' × $' + dr.rate + ' + ' + dr.electricCount + ' × $' + dr.electricRate + ' EV')) +
+        ') = ' + cents(dr.total) + ' · ' + dr.paidCount + ' of ' + dr.count + ' paid.';
       note.innerHTML = s;
     }
   }
@@ -142,6 +143,71 @@
       try { fn(d); } catch (e) { if (window.console) console.warn('cabin-live:', fn.name, e); }
     });
     body.setAttribute('data-ct-rev', d.rev);
+  }
+
+  /* ---------- Named ledger (planning page only): data/ledger-YYYY.json ---------- */
+  function when(method, date) {
+    var parts = [];
+    if (method) parts.push(esc(method));
+    if (date) parts.push(shortDate(date));
+    return parts.join(' · ') || '—';
+  }
+  function renderLedger(L) {
+    var el;
+    if ((el = $('ct-money-in'))) {
+      var tin = 0;
+      el.innerHTML = L.moneyIn.map(function (p) {
+        tin += p.amount;
+        var ok = p.amount > 0;
+        return '<tr><td>' + esc(p.name) + '</td><td>' + (ok ? cents(p.amount) : '$0') + '</td><td>' +
+          (ok ? when(p.method, p.date) : '—') + '</td><td><span class="pill ' + (ok ? 'pill-done' : 'pill-tbd') + '">' +
+          esc(p.status) + '</span></td></tr>';
+      }).join('') + '<tr class="row-total"><td>Total collected</td><td>' + cents(tin) + '</td><td colspan="2"></td></tr>';
+    }
+    if ((el = $('ct-money-out'))) {
+      var tout = 0;
+      el.innerHTML = L.moneyOut.slice().reverse().map(function (m) {
+        tout += m.amount;
+        var pb = !m.payback ? '<span class="pill pill-tbd">n/a</span>'
+          : m.payback.status === 'paid' ? '<span class="pill pill-done">✅ ' + when(m.payback.method, m.payback.date) + '</span>'
+          : '<span class="pill pill-todo">⏳ owed</span>';
+        return '<tr><td>' + shortDate(m.date) + '</td><td>' + esc(m.label) + '<div class="exp-line">' + esc(m.line) +
+          '</div></td><td>' + cents(m.amount) + '</td><td>' + esc(m.frontedBy) + '</td><td>' + pb + '</td></tr>';
+      }).join('') + '<tr class="row-total"><td></td><td>Total spent</td><td>' + cents(tout) + '</td><td colspan="2"></td></tr>';
+    }
+    if ((el = $('ct-driver-rows'))) {
+      var td = 0;
+      el.innerHTML = L.drivers.map(function (d) {
+        td += d.amount;
+        var st = d.status === 'paid' ? '<span class="pill pill-done">✅ ' + when(d.method, d.date) + '</span>'
+          : '<span class="pill pill-todo">⏳ ' + esc(d.status) + '</span>';
+        return '<tr><td>' + esc(d.name) + '</td><td>' + esc(d.vehicle === 'electric' ? 'EV' : d.vehicle) + '</td><td>' +
+          cents(d.amount) + '</td><td>' + st + '</td></tr>';
+      }).join('') + '<tr class="row-total"><td>Total</td><td></td><td>' + cents(td) + '</td><td></td></tr>';
+    }
+    if ((el = $('ct-recon'))) {
+      var r = L.reconciliation;
+      var row = function (lbl, v, cls) {
+        return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + lbl + '</td><td>' + v + '</td></tr>';
+      };
+      el.innerHTML =
+        row('Collected from members', cents(r.collected)) +
+        row('+ Carryover from ' + (+YEAR - 1), cents(r.carryoverIn)) +
+        row('= Total budget', cents(r.budget), 'row-total') +
+        row('− Paid direct from trip fund (lodging)', cents(r.paidDirect)) +
+        row('− Paybacks sent', cents(r.paybacksPaid)) +
+        row('− Driver payouts sent', cents(r.driversPaid)) +
+        row('= Cash on hand now', cents(r.cashOnHand), 'row-total') +
+        row('− Paybacks still owed', cents(r.paybacksOwed)) +
+        row('− Driver payouts still owed', cents(r.driversOwed)) +
+        row('= Carryover to ' + (+YEAR + 1), cents(r.carryoverOut), 'row-total');
+    }
+  }
+  if (PAGE === 'planning' && $('ct-money-in')) {
+    fetch('data/ledger-' + YEAR + '.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (L) { try { renderLedger(L); } catch (e) { if (window.console) console.warn('ledger:', e); } })
+      .catch(function (e) { if (window.console) console.warn('ledger: using built-in numbers', e); });
   }
 
   fetch(URL, { cache: 'no-store' })

@@ -1,0 +1,254 @@
+{
+  "schema": 1,
+  "rev": 9,
+  "updatedAt": "2026-10-12T18:39:33-07:00",
+  "moneyIn": [
+    {
+      "name": "Abrams",
+      "amount": 475,
+      "method": "PayPal",
+      "date": "2026-02-09",
+      "status": "paid"
+    },
+    {
+      "name": "Phatz",
+      "amount": 475,
+      "method": "Apple Cash",
+      "date": "2026-02-13",
+      "status": "paid"
+    },
+    {
+      "name": "Cooper",
+      "amount": 475,
+      "method": "Venmo",
+      "date": "2026-02-09",
+      "status": "paid"
+    },
+    {
+      "name": "Dela",
+      "amount": 475,
+      "method": "PayPal",
+      "date": "2026-09-14",
+      "status": "paid"
+    },
+    {
+      "name": "Greg",
+      "amount": 475,
+      "method": "PayPal",
+      "date": "2026-02-12",
+      "status": "paid"
+    },
+    {
+      "name": "Jason",
+      "amount": 475,
+      "method": "PayPal",
+      "date": "2026-02-09",
+      "status": "paid"
+    },
+    {
+      "name": "JJ",
+      "amount": 475,
+      "method": "Venmo",
+      "date": "2026-02-09",
+      "status": "paid"
+    },
+    {
+      "name": "Nene",
+      "amount": 475,
+      "method": "Venmo",
+      "date": "2026-02-10",
+      "status": "paid"
+    },
+    {
+      "name": "Todd",
+      "amount": 475,
+      "method": "PayPal",
+      "date": "2026-02-09",
+      "status": "paid"
+    },
+    {
+      "name": "Truby",
+      "amount": 475,
+      "method": "PayPal",
+      "date": "2026-02-09",
+      "status": "paid"
+    },
+    {
+      "name": "Zack",
+      "amount": 475,
+      "method": "PayPal",
+      "date": "2026-02-13",
+      "status": "paid"
+    },
+    {
+      "name": "Arod",
+      "amount": 475,
+      "method": "PayPal",
+      "date": "2026-02-09",
+      "status": "paid"
+    },
+    {
+      "name": "Tony",
+      "amount": 0,
+      "method": null,
+      "date": null,
+      "status": "free (2025 winner)"
+    },
+    {
+      "name": "Holtz",
+      "amount": 0,
+      "method": null,
+      "date": null,
+      "status": "attended 1 day, not charged"
+    }
+  ],
+  "moneyOut": [
+    {
+      "id": "e1",
+      "date": "2026-09-23",
+      "label": "Golden Oak Estate (balance)",
+      "line": "Lodging",
+      "amount": 2922.63,
+      "frontedBy": "Trip fund (paid direct)",
+      "payback": null
+    },
+    {
+      "id": "e2",
+      "date": "2026-10-07",
+      "label": "Initial food buy",
+      "line": "Main Food Run",
+      "amount": 1013.96,
+      "frontedBy": "JJ",
+      "payback": {
+        "status": "paid",
+        "amount": 1013.96,
+        "method": "PayPal",
+        "date": "2026-10-10"
+      }
+    },
+    {
+      "id": "e3",
+      "date": "2026-10-07",
+      "label": "Ice",
+      "line": "On-Mountain",
+      "amount": 28.0,
+      "frontedBy": "Todd",
+      "payback": {
+        "status": "paid",
+        "amount": 28.0,
+        "method": "PayPal",
+        "date": "2026-10-10"
+      }
+    },
+    {
+      "id": "e4",
+      "date": "2026-10-07",
+      "label": "Wednesday pizza",
+      "line": "Pizza Night",
+      "amount": 133.64,
+      "frontedBy": "Tony",
+      "payback": {
+        "status": "paid",
+        "amount": 133.64,
+        "method": "PayPal",
+        "date": "2026-10-10"
+      }
+    },
+    {
+      "id": "e5",
+      "date": "2026-10-10",
+      "label": "Grocery fill-in",
+      "line": "On-Mountain",
+      "amount": 20.22,
+      "frontedBy": "Tony",
+      "payback": {
+        "status": "paid",
+        "amount": 20.22,
+        "method": "PayPal",
+        "date": "2026-10-10"
+      }
+    },
+    {
+      "id": "e6",
+      "date": "2026-10-12",
+      "label": "Mexican Coke",
+      "line": "On-Mountain",
+      "amount": 35.0,
+      "frontedBy": "Phatz (Albert)",
+      "payback": {
+        "status": "paid",
+        "amount": 35.0,
+        "method": "Apple Pay",
+        "date": "2026-10-12"
+      }
+    },
+    {
+      "id": "e7",
+      "date": "2026-10-12",
+      "label": "Trip hats",
+      "line": "Hats (cabin swag)",
+      "amount": 150.0,
+      "frontedBy": "Jason",
+      "payback": {
+        "status": "paid",
+        "amount": 150.0,
+        "method": "PayPal",
+        "date": "2026-10-12"
+      }
+    }
+  ],
+  "drivers": [
+    {
+      "name": "Nene",
+      "vehicle": "gas",
+      "amount": 180,
+      "status": "paid",
+      "method": "Venmo",
+      "date": "2026-10-12"
+    },
+    {
+      "name": "Todd",
+      "vehicle": "diesel",
+      "amount": 225,
+      "status": "paid",
+      "method": "PayPal",
+      "date": "2026-10-12"
+    },
+    {
+      "name": "Jason",
+      "vehicle": "electric",
+      "amount": 100,
+      "status": "paid",
+      "method": "PayPal",
+      "date": "2026-10-12"
+    },
+    {
+      "name": "Zack",
+      "vehicle": "gas",
+      "amount": 180,
+      "status": "paid",
+      "method": "PayPal",
+      "date": "2026-10-12"
+    },
+    {
+      "name": "Phatz",
+      "vehicle": "electric",
+      "amount": 100,
+      "status": "paid",
+      "method": "Apple Pay",
+      "date": "2026-10-12"
+    }
+  ],
+  "reconciliation": {
+    "collected": 5700.0,
+    "carryoverIn": 627.89,
+    "budget": 6327.89,
+    "paidDirect": 2922.63,
+    "paybacksPaid": 1380.82,
+    "paybacksOwed": 0.0,
+    "driversPaid": 785.0,
+    "driversOwed": 0.0,
+    "cashOnHand": 1239.44,
+    "carryoverOut": 1239.44
+  }
+}

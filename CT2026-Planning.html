@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cabin Trip 2026 — Planning</title>
+  <title>Cabin Trip 2026 — Budget</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -405,7 +405,7 @@
     .photo-carousel {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 4 / 3;
       border-radius: 10px;
       overflow: hidden;
       background: var(--forest);
@@ -601,6 +601,15 @@
     .exp-line { font-size: 11px; color: var(--muted); }
     .exp-table td:nth-child(2) { text-align: left; }
     .exp-table td:first-child { white-space: nowrap; color: var(--muted); }
+
+    .budget-page { max-width: 760px; margin: 24px auto 40px; padding: 0 16px; }
+    .budget-hero-note { text-align:center; font-size:12px; color: var(--smoke); margin-top:8px; }
+    .budget-page { display: grid; gap: 18px; }
+    .ledger-table td, .ledger-table th { text-align: left !important; }
+    .ledger-table td.num, .ledger-table th.num { text-align: right !important; white-space: nowrap; }
+    .ledger-table .pill { white-space: nowrap; }
+    .recon-table td:last-child { text-align: right; white-space: nowrap; }
+    .card-scroll { overflow-x: auto; }
   </style>
 </head>
 <body data-ct-page="planning" data-ct-year="2026">
@@ -649,290 +658,34 @@
 </nav>
 
 <div class="hero">
-  <div class="hero-eyebrow">Big Bear, CA · Golden Oak Estate</div>
-  <h1>Cabin Trip<br>2026</h1>
+  <div class="hero-eyebrow">Planning Team · Internal</div>
+  <h1>2026 Budget</h1>
   <div class="hero-meta">
-    <b>Wednesday Oct 7 – Sunday Oct 11</b><br>
-    4 nights · <span id="ct-confirmed">13</span> confirmed · $475/person
+    <b>Golden Oak Estate · Oct 7–11, 2026</b><br>
+    Collected, planned vs. actual, and every expense
   </div>
+  <div class="budget-hero-note" id="ct-updated"></div>
 </div>
 
-<div class="countdown-bar">
-  <div class="countdown-label">Days Until Cabin</div>
-  <div class="countdown-units" id="countdown-display">
-    <div class="countdown-unit"><div class="countdown-num" id="cd-days">—</div><div class="countdown-unit-label">Days</div></div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-hours">—</div><div class="countdown-unit-label">Hours</div></div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-mins">—</div><div class="countdown-unit-label">Mins</div></div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-secs">—</div><div class="countdown-unit-label">Secs</div></div>
-  </div>
-  <div class="ct-updated" id="ct-updated"></div>
-</div>
-
-<div class="status-strip" id="ct-chips">
-  <div class="status-chip chip-done">✅ Cabin Booked</div>
-  <div class="status-chip chip-done">✅ Lodging Paid</div>
-  <div class="status-chip chip-done">✅ 13 Confirmed</div>
-  <div class="status-chip chip-done">✅ All 12 Payers Paid</div>
-  <div class="status-chip chip-done">✅ Driving Plan Set</div>
-  <div class="status-chip chip-todo">⏳ Holtz TBD</div>
-  <div class="status-chip chip-done">✅ Menu Set</div>
-  <div class="status-chip chip-todo">⏳ Shirts TBD</div>
-  <div class="status-chip chip-info">💰 $6,327.89 Collected</div>
-</div>
-
-<div class="page-wrap">
-
-  <!-- ── LEFT COLUMN ── -->
-  <div class="main-col">
-
-    <!-- CREW -->
+<div class="budget-page">
     <div class="card">
       <div class="card-head">
-        <div class="card-title">👥 The Crew</div>
-        <div class="card-sub">13 confirmed · 1 TBD · 2 maybe</div>
+        <div class="card-title">🧮 Where the Money Is</div>
+        <div class="card-sub">Bottom line</div>
       </div>
-      <div class="card-body">
-        <div class="crew-section-label">Confirmed — All Paid ✅</div>
-        <div class="crew-grid">
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Tony</div>
-            <div class="detail">🏆 Free · 2025 winner</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Abrams</div>
-            <div class="detail">Paid · Paypal 2/9</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Phatz</div>
-            <div class="detail">Paid · Apple Cash 2/13</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Cooper</div>
-            <div class="detail">Paid · Venmo 2/9</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Dela</div>
-            <div class="detail">Paid · Paypal 9/14</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Greg</div>
-            <div class="detail">Paid · Paypal 2/12</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Jason</div>
-            <div class="detail">Paid · Paypal 2/9</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>JJ</div>
-            <div class="detail">Paid · Venmo 2/9</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Nene</div>
-            <div class="detail">Paid · Venmo 2/10</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Todd</div>
-            <div class="detail">Paid · Paypal 2/9</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Truby</div>
-            <div class="detail">Paid · Paypal 2/9</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Zack</div>
-            <div class="detail">Paid · Paypal 2/13</div>
-          </div>
-          <div class="crew-person confirmed">
-            <div class="name"><span class="status-dot dot-green"></span>Arod</div>
-            <div class="detail">Paid · Paypal 2/9</div>
-          </div>
-        </div>
-
-        <div class="crew-section-label">TBD — Not Paid</div>
-        <div class="crew-grid">
-          <div class="crew-person tbd-person">
-            <div class="name"><span class="status-dot dot-amber"></span>Holtz 👑</div>
-            <div class="detail">Awaiting confirmation</div>
-          </div>
-        </div>
-
-        <div class="crew-section-label">Maybe</div>
-        <div class="crew-grid">
-          <div class="crew-person maybe-person">
-            <div class="name"><span class="status-dot dot-gray"></span>Caca</div>
-            <div class="detail">Occasional maybe</div>
-          </div>
-          <div class="crew-person maybe-person">
-            <div class="name"><span class="status-dot dot-gray"></span>Cam</div>
-            <div class="detail">Occasional maybe</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DRIVING PLAN -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title">🚗 Driving Plan</div>
-        <div class="card-sub">6 cars · as of Sep 8</div>
-      </div>
-      <div class="card-body">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:16px">
-          Most of the crew leaves from <b>JJ's house Wednesday, before noon</b>. A handful of folks are running their own schedule.
-        </div>
-
-        <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Leaving from JJ's — Wednesday AM</div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b style="color:var(--forest)">Phatz</b><br>
-            <span style="color:var(--muted)">Riding along: Tony (picked up from Cooper's), Cooper · picking up Dela along the way</span>
-          </div>
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b style="color:var(--forest)">Todd</b><br>
-            <span style="color:var(--muted)">Riding along: JJ, Abrams</span>
-          </div>
-        </div>
-
-        <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Running Their Own Schedule</div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-          <div style="background:var(--gray-bg);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b>Neil</b><br>
-            <span style="color:var(--muted)">Meeting Arod and Truby somewhere after they fly in, then bringing them up together</span>
-          </div>
-          <div style="background:var(--gray-bg);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b>Zack</b><br>
-            <span style="color:var(--muted)">Picking up Greg, bringing him up</span>
-          </div>
-          <div style="background:var(--gray-bg);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b>Jason</b> — drives himself
-          </div>
-          <div style="background:var(--gray-bg);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b>Holtz</b> — drives himself, if he can join
-          </div>
-        </div>
-
-        <div style="background:var(--green-bg);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--green);line-height:1.5">
-          ✅ 6 cars, 6 parking spots — right at the limit (before accounting for Holtz's variable schedule).
-        </div>
-
-        <div style="background:var(--amber-bg);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--amber);line-height:1.5;margin-top:10px">
-          ⚠️ <b>Still open:</b> where Neil, Arod, and Truby are meeting up.
-        </div>
-
-        <div style="margin-top:16px">
-          <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Known Logistics</div>
-          <div style="font-size:13px;color:var(--text);line-height:1.8">
-            🛫 Tony: arrives San Diego 10/7 7:35am, ubers to Coop's · departs San Diego 10/11 5:55pm · rides back with Phatz<br>
-            🛫 Truby &amp; Arod fly in, meeting Neil · ride back with Neil<br>
-            🛫 Greg flies · rides back with Zack<br>
-            💰 Driver reimbursement: $125/round trip · $50 electric
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MENU -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title">🍽️ Menu</div>
-        <div class="card-sub">From the chef — JJ</div>
-      </div>
-      <div class="card-body">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:16px">
-          JJ's cooking this year. Breakfast &amp; lunch are DIY/leftovers, dinners are the main event.
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            <b style="color:var(--forest)">Breakfast</b> — DIY station: eggs, bagels &amp; cream cheese, tortillas, hash browns, bacon, sausage
-          </div>
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            <b style="color:var(--forest)">Lunch</b> — Leftovers, reworked into nachos or quesadillas
-          </div>
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            <b style="color:var(--forest)">Dinner — Wed (fixed)</b> — 🍕 Pizza, ordered from a local joint
-          </div>
-        </div>
-
-        <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin:16px 0 10px">Thu/Fri/Sat Dinners — order is fluid, whatever we're feeling that day</div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            Smoked brisket (JJ smokes Tuesday, brings it up), potatoes, Caesar salad
-          </div>
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            Chicken enchiladas w/ poblano sauce, elote corn, Mexican rice
-          </div>
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            🥩 Steaks (JJ's buying)
-          </div>
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            <b style="color:var(--forest)">Snacks &amp; grazing</b> — Crockpot nacho cheese, big cheese board, fruit, chips, candy, chili-Velveeta dip
-          </div>
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            <b style="color:var(--forest)">Drinks</b> — JJ's 5 gallons of homemade mead, plus Coke Zero, Fresca, Mtn Dew Code Red, orange soda, cream soda, water
-          </div>
-          <div style="background:var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6">
-            <b style="color:var(--forest)">Desserts (nights TBD)</b> — Bourbon bread pudding, chocolate chip cookies
-          </div>
-        </div>
-
-        <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Cooking Assignments</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="background:var(--green-bg);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b style="color:var(--green)">Phatz</b> — Steaks
-          </div>
-          <div style="background:var(--green-bg);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b style="color:var(--green)">JJ</b> — Brisket, Chicken Enchiladas
-          </div>
-          <div style="background:var(--green-bg);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5">
-            <b style="color:var(--green)">Tony</b> — Bourbon Bread Pudding
-          </div>
-          <div style="background:var(--gray-bg);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.5;color:var(--muted)">
-            Chocolate Chip Cookies — unassigned<br>
-            Pizza night — ordered, no cook needed
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PHOTOS -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title">📸 Trip Photos</div>
-        <div class="card-sub">Shared album</div>
-      </div>
-      <div class="card-body">
-        <div class="photo-carousel" id="photo-carousel">
-          <div class="photo-slide active" style="background-image:url('https://images.unsplash.com/photo-1502784444187-359ac186c5bb?w=800&q=80')"></div>
-          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80')"></div>
-          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1517824806704-9040b037703b?w=800&q=80')"></div>
-          <div class="photo-slide" style="background-image:url('https://images.unsplash.com/photo-1518602164578-cd0074062767?w=800&q=80')"></div>
-          <div class="photo-dots" id="photo-dots"></div>
-        </div>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5">
-          Pulls live from the <b>CT2026images</b> folder in the GitHub repo — add or swap photos there anytime and this updates automatically. Tap below to view the full album or add your own pics right from your phone.
-        </p>
-        <a href="https://photos.app.goo.gl/Xv5jd2EpZoxEfyts9" target="_blank" class="photo-cta">📷 View &amp; Add Photos</a>
-      </div>
-    </div>
-
-  </div><!-- end main-col -->
-
-  <!-- ── SIDEBAR ── -->
-  <div class="sidebar">
-
-    <!-- TRIP BOARD (live) -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title">📣 Trip Board</div>
-        <div class="card-sub">Live updates</div>
-      </div>
-      <div class="card-body" id="ct-board">
-        <div class="board-movie">🎬 <b>Movie night:</b> <span class="board-when">TBD</span></div>
-        <div class="board-empty">No announcements yet.</div>
+      <div class="card-body card-scroll">
+        <table class="budget-table recon-table"><tbody id="ct-recon">
+            <tr><td>Collected from members</td><td>$5,700.00</td></tr>
+            <tr><td>+ Carryover from 2025</td><td>$627.89</td></tr>
+            <tr class="row-total"><td>= Total budget</td><td>$6,327.89</td></tr>
+            <tr><td>− Paid direct from trip fund (lodging)</td><td>$2,922.63</td></tr>
+            <tr><td>− Paybacks sent</td><td>$1,380.82</td></tr>
+            <tr><td>− Driver payouts sent</td><td>$785.00</td></tr>
+            <tr class="row-total"><td>= Cash on hand now</td><td>$1,239.44</td></tr>
+            <tr><td>− Paybacks still owed</td><td>$0.00</td></tr>
+            <tr><td>− Driver payouts still owed</td><td>$0.00</td></tr>
+            <tr class="row-total"><td>= Carryover to 2027</td><td>$1,239.44</td></tr>
+          </tbody></table>
       </div>
     </div>
 
@@ -940,7 +693,7 @@
     <div class="card">
       <div class="card-head">
         <div class="card-title">💰 Budget</div>
-        <div class="card-sub">Oct 7–11, 2026</div>
+        <div class="card-sub">Planning team only</div>
       </div>
       <div class="card-body">
         <div class="budget-summary">
@@ -949,11 +702,11 @@
             <div class="lbl">Total Budget</div>
           </div>
           <div class="budget-stat">
-            <div class="val val-green" id="ct-b-spent">$4,098</div>
+            <div class="val val-green" id="ct-b-spent">$5,088</div>
             <div class="lbl">Spent</div>
           </div>
           <div class="budget-stat">
-            <div class="val val-gold" id="ct-b-remaining">$2,230</div>
+            <div class="val val-gold" id="ct-b-remaining">$1,239</div>
             <div class="lbl">Remaining</div>
           </div>
         </div>
@@ -961,11 +714,11 @@
         <div class="budget-bar-wrap">
           <div class="budget-bar-labels">
             <span>$0</span>
-            <span style="color:var(--green)" id="ct-b-barlabel">$4,098 spent (65%)</span>
+            <span style="color:var(--green)" id="ct-b-barlabel">$5,088 spent (80%)</span>
             <span id="ct-b-barmax">$6,328</span>
           </div>
           <div class="budget-bar-track">
-            <div class="budget-bar-fill" id="ct-b-bar" style="width:65%"></div>
+            <div class="budget-bar-fill" id="ct-b-bar" style="width:80%"></div>
           </div>
         </div>
 
@@ -977,349 +730,98 @@
             <tr><td>Paid In (12 × $475)</td><td>$5,700.00</td><td></td><td><span class="pill pill-done">collected</span></td></tr>
             <tr><td>2025 Carryover</td><td>$627.89</td><td></td><td><span class="pill pill-done">carryover</span></td></tr>
             <tr><td>Lodging</td><td>$2,922.63</td><td>$2,922.63</td><td><span class="pill pill-done">paid ✅</span></td></tr>
-            <tr><td>Main Food Run</td><td>$750.00</td><td class="over">$1,013.96</td><td><span class="pill pill-todo">in progress</span></td></tr>
-            <tr><td>Steaks</td><td>$200.00</td><td>—</td><td><span class="pill pill-todo">pending</span></td></tr>
+            <tr><td>Main Food Run</td><td>$750.00</td><td class="over">$1,013.96</td><td><span class="pill pill-done">done ✅</span></td></tr>
+            <tr><td>Steaks (in food buy)</td><td>$200.00</td><td>—</td><td><span class="pill pill-done">done ✅</span></td></tr>
             <tr><td>Pizza Night</td><td>$150.00</td><td>$133.64</td><td><span class="pill pill-done">done ✅</span></td></tr>
-            <tr><td>Shirts</td><td>$250.00</td><td>—</td><td><span class="pill pill-todo">pending</span></td></tr>
-            <tr><td>On-Mountain</td><td>$150.00</td><td>$28.00</td><td><span class="pill pill-todo">in progress</span></td></tr>
-            <tr><td>Cabin Bucks</td><td>$10.00</td><td>—</td><td><span class="pill pill-todo">pending</span></td></tr>
-            <tr><td>Drivers (4×$125 + 1×$50 EV)</td><td>$550.00</td><td>—</td><td><span class="pill pill-todo">trip end</span></td></tr>
-            <tr class="row-total"><td>Projected Surplus</td><td colspan="2">$1,098</td><td><span class="pill pill-tbd">est.</span></td></tr>
-          </tbody>
-        </table>
-
-        <div class="exp-title">🧾 Expenses</div>
-        <table class="budget-table exp-table">
-          <tbody id="ct-expenses">
-            <tr><td>Oct 7</td><td>Wednesday pizza<div class="exp-line">Pizza Night</div></td><td>$133.64</td></tr>
-            <tr><td>Oct 7</td><td>Ice<div class="exp-line">On-Mountain</div></td><td>$28.00</td></tr>
-            <tr><td>Oct 7</td><td>Initial food buy<div class="exp-line">Main Food Run</div></td><td>$1,013.96</td></tr>
-            <tr><td>Sep 23</td><td>Golden Oak Estate (balance)<div class="exp-line">Lodging</div></td><td>$2,922.63</td></tr>
+            <tr><td>Hats (cabin swag)</td><td>$250.00</td><td>$150.00</td><td><span class="pill pill-done">done ✅</span></td></tr>
+            <tr><td>On-Mountain</td><td>$150.00</td><td>$83.22</td><td><span class="pill pill-done">done ✅</span></td></tr>
+            <tr><td>Cabin Bucks</td><td>$10.00</td><td>—</td><td><span class="pill pill-done">done ✅</span></td></tr>
+            <tr><td>Drivers (diesel $225 · gas $180 ×2 · EV $100 ×2)</td><td>$785.00</td><td>$785.00</td><td><span class="pill pill-done">paid ✅</span></td></tr>
+            <tr class="row-total"><td>Projected Surplus</td><td colspan="2">$1,239</td><td><span class="pill pill-tbd">est.</span></td></tr>
           </tbody>
         </table>
 
         <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.5" id="ct-b-note">
-          12 payers × $475 = $5,700.00 + $627.89 carryover = <b>$6,327.89 total budget</b>.<br>
-          Expense paybacks: 3 of 3 paid ($1,175.60).<br>
-          Driver paybacks: 5 drivers (4 × $125 + 1 × $50 EV) = $550.00 · 0 paid.
+          12 payers × $475 = $5,700.00 + $627.89 carryover = <b>$6,327.89 total budget</b>.<br>Expense paybacks: 6 of 6 paid ($1,380.82).<br>Driver paybacks: 5 drivers (gas $180 ×2 · diesel $225 · EV $100 ×2) = $785.00 · 5 of 5 paid.
         </p>
       </div>
     </div>
-
-    <!-- CABIN INFO -->
     <div class="card">
       <div class="card-head">
-        <div class="card-title">🏡 Cabin Details</div>
-        <div class="card-sub">Golden Oak Estate</div>
+        <div class="card-title">💵 Money In</div>
+        <div class="card-sub">Who paid</div>
       </div>
-      <div class="card-body">
-        <div style="font-size:13px;color:var(--muted);margin-bottom:14px">
-          📍 <a href="https://maps.google.com/?q=42438+Golden+Oak+Rd,+Big+Bear+Lake,+CA+92315" target="_blank" style="color:var(--forest);font-weight:500">42438 Golden Oak Rd, Big Bear Lake, CA 92315</a><br>
-          Castle Glen Estates · 4,600 sq ft · 2 floors<br>
-          Booking ID: <b>611006</b> ·
-          <a href="https://www.destinationbigbear.com/Property_detail_v.aspx?propid=1361" target="_blank" style="color:var(--gold);font-weight:500">View on Destination Big Bear ↗</a>
-        </div>
-
-        <div class="cabin-stat-row">
-          <div class="cabin-stat"><div class="val">6</div><div class="lbl">Bedrooms</div></div>
-          <div class="cabin-stat"><div class="val">4</div><div class="lbl">Baths</div></div>
-          <div class="cabin-stat"><div class="val">16</div><div class="lbl">Max occ.</div></div>
-          <div class="cabin-stat"><div class="val">6</div><div class="lbl">Parking</div></div>
-        </div>
-
-        <div class="amenity-chips">
-          <div class="amenity-chip">🛁 Hot Tub</div>
-          <div class="amenity-chip">🎱 Pool Table</div>
-          <div class="amenity-chip">🏓 Ping Pong</div>
-          <div class="amenity-chip">🎯 Foosball</div>
-          <div class="amenity-chip">🎬 Theater</div>
-          <div class="amenity-chip">🔥 Fireplace</div>
-          <div class="amenity-chip">🧖 Sauna</div>
-          <div class="amenity-chip">🍖 Gas Grill</div>
-          <div class="amenity-chip">🚲 Bicycles</div>
-          <div class="amenity-chip">🌊 Lake Views</div>
-          <div class="amenity-chip">📶 Wi-Fi</div>
-          <div class="amenity-chip">👕 Laundry</div>
-        </div>
-
-        <div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Sleeping Arrangements</div>
-        <div class="sleep-list">
-          BR1 (Main): King<br>
-          BR2 (Up): 2 Twin Trundles + Twin/Queen Bunk<br>
-          BR3 (Up): Queen + Twin<br>
-          BR4 (Up): Twin/Twin Bunk<br>
-          BR5 (Lower): 2× Twin/Twin Bunks<br>
-          BR6 (Lower): 2 Queens
-        </div>
-
-        <div class="checkin-note">
-          ⚠️ <b>Check-in:</b> 4:00pm · <b>Check-out:</b> 10:00am<br>
-          Go straight to the home — no office stop, unless your key is tagged "OFFICE" or you need help with the City Ordinance form (office: 713 Stocker Rd).<br>
-          City ordinance requires ID + selfie photo upload before access info is sent.<br>
-          Early check-in/late check-out: call morning-of, not guaranteed.<br>
-          Balance auto-charged ~<b>Sep 23</b>.
-        </div>
+      <div class="card-body card-scroll">
+        <table class="budget-table ledger-table">
+          <thead><tr><th>Member</th><th>Amount</th><th>How · When</th><th>Status</th></tr></thead>
+          <tbody id="ct-money-in">
+            <tr><td>Abrams</td><td>$475.00</td><td>PayPal · Feb 9</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Phatz</td><td>$475.00</td><td>Apple Cash · Feb 13</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Cooper</td><td>$475.00</td><td>Venmo · Feb 9</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Dela</td><td>$475.00</td><td>PayPal · Sep 14</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Greg</td><td>$475.00</td><td>PayPal · Feb 12</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Jason</td><td>$475.00</td><td>PayPal · Feb 9</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>JJ</td><td>$475.00</td><td>Venmo · Feb 9</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Nene</td><td>$475.00</td><td>Venmo · Feb 10</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Todd</td><td>$475.00</td><td>PayPal · Feb 9</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Truby</td><td>$475.00</td><td>PayPal · Feb 9</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Zack</td><td>$475.00</td><td>PayPal · Feb 13</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Arod</td><td>$475.00</td><td>PayPal · Feb 9</td><td><span class="pill pill-done">paid</span></td></tr>
+            <tr><td>Tony</td><td>$0</td><td>—</td><td><span class="pill pill-tbd">free (2025 winner)</span></td></tr>
+            <tr><td>Holtz</td><td>$0</td><td>—</td><td><span class="pill pill-tbd">attended 1 day, not charged</span></td></tr>
+            <tr class="row-total"><td>Total collected</td><td>$5,700.00</td><td colspan="2"></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-
-    <!-- CHECK-IN & HOUSE RULES -->
     <div class="card">
       <div class="card-head">
-        <div class="card-title">🔑 Check-In &amp; House Rules</div>
-        <div class="card-sub">From the booking company</div>
+        <div class="card-title">🧾 Money Out</div>
+        <div class="card-sub">Every expense, who fronted it, payback</div>
       </div>
-      <div class="card-body">
-        <div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Wi-Fi</div>
-        <div style="font-size:13px;color:var(--text);margin-bottom:16px;line-height:1.6">
-          Network: <b>MyspectrumWifi9a-2G</b> / <b>MyspectrumWifi9a-5G</b><br>
-          Password: <b>scoutcamera734</b>
-        </div>
-
-        <div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">House Rules — Deposit Risk</div>
-        <div style="background:var(--amber-bg);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--amber);line-height:1.7;margin-bottom:16px">
-          🚨 Don't remove the noise decibel monitor or security cameras — <b>full deposit loss</b> if removed (it only measures noise level, not audio/video)<br>
-          🌙 Quiet hours <b>10pm–7am</b> — no outdoor noise/music, city can fine or evict<br>
-          🔥 No fire pits (county regulation) — BBQ is natural gas, fine to use<br>
-          🌳 Backyard landscaping areas are off-limits (city restriction)<br>
-          🐾 Not pet-friendly
-        </div>
-
-        <div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Good to Know</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8;margin-bottom:16px">
-          🌬️ No AC — fans only, typical for Big Bear (windows open morning/evening, close + fan during the day)<br>
-          🔥 Fireplaces: wood (living room), gas/ceramic (master bedroom)<br>
-          🌡️ Thermostat (Nest): turn down to <b>55°F at checkout</b><br>
-          🐻 Wildlife is normal — mice, raccoons, squirrels, occasional bears
-        </div>
-
-        <div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Departure Checklist</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-          🔑 Keys to lockbox<br>
-          🍽️ Dishes washed &amp; put away<br>
-          🔒 Lock all doors &amp; windows<br>
-          🌡️ Heat to 55°F, lights off<br>
-          🗑️ Trash to dump site — <b>41970 Garstin Dr, Big Bear Lake</b> (7am–8pm, zip 92315) — no curbside pickup
-        </div>
+      <div class="card-body card-scroll">
+        <table class="budget-table ledger-table">
+          <thead><tr><th>Date</th><th>Item</th><th class="num">Amount</th><th>Fronted By</th><th>Paid Back</th></tr></thead>
+          <tbody id="ct-money-out">
+            <tr><td>Oct 12</td><td>Trip hats<div class="exp-line">Hats (cabin swag)</div></td><td>$150.00</td><td>Jason</td><td><span class="pill pill-done">✅ PayPal · Oct 12</span></td></tr>
+            <tr><td>Oct 12</td><td>Mexican Coke<div class="exp-line">On-Mountain</div></td><td>$35.00</td><td>Phatz (Albert)</td><td><span class="pill pill-done">✅ Apple Pay · Oct 12</span></td></tr>
+            <tr><td>Oct 10</td><td>Grocery fill-in<div class="exp-line">On-Mountain</div></td><td>$20.22</td><td>Tony</td><td><span class="pill pill-done">✅ PayPal · Oct 10</span></td></tr>
+            <tr><td>Oct 7</td><td>Wednesday pizza<div class="exp-line">Pizza Night</div></td><td>$133.64</td><td>Tony</td><td><span class="pill pill-done">✅ PayPal · Oct 10</span></td></tr>
+            <tr><td>Oct 7</td><td>Ice<div class="exp-line">On-Mountain</div></td><td>$28.00</td><td>Todd</td><td><span class="pill pill-done">✅ PayPal · Oct 10</span></td></tr>
+            <tr><td>Oct 7</td><td>Initial food buy<div class="exp-line">Main Food Run</div></td><td>$1,013.96</td><td>JJ</td><td><span class="pill pill-done">✅ PayPal · Oct 10</span></td></tr>
+            <tr><td>Sep 23</td><td>Golden Oak Estate (balance)<div class="exp-line">Lodging</div></td><td>$2,922.63</td><td>Trip fund (paid direct)</td><td><span class="pill pill-tbd">n/a</span></td></tr>
+            <tr class="row-total"><td></td><td>Total spent</td><td>$4,303.45</td><td colspan="2"></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-
-    <!-- SHIRTS -->
     <div class="card">
       <div class="card-head">
-        <div class="card-title">👕 Shirt Sizes</div>
-        <div class="card-sub">13 confirmed · order TBD</div>
+        <div class="card-title">🚗 Driver Payouts</div>
+        <div class="card-sub">IRS rate basis: $0.76/mi × ~240 mi</div>
       </div>
-      <div class="card-body">
-        <div class="shirt-grid">
-          <div class="shirt-size-box">
-            <div class="shirt-size">S</div>
-            <div class="shirt-count">1 shirt</div>
-            <div class="shirt-names">Phatz</div>
-          </div>
-          <div class="shirt-size-box">
-            <div class="shirt-size">M</div>
-            <div class="shirt-count">3 shirts</div>
-            <div class="shirt-names">Tony, Greg, Jason</div>
-          </div>
-          <div class="shirt-size-box">
-            <div class="shirt-size">L</div>
-            <div class="shirt-count">5 shirts</div>
-            <div class="shirt-names">Abrams, Cooper, Truby, Zack, Arod</div>
-          </div>
-          <div class="shirt-size-box">
-            <div class="shirt-size">XL</div>
-            <div class="shirt-count">3 shirts</div>
-            <div class="shirt-names">JJ, Nene, Dela</div>
-          </div>
-          <div class="shirt-size-box">
-            <div class="shirt-size" style="color:var(--muted)">2XL</div>
-            <div class="shirt-count">0 (Holtz TBD)</div>
-          </div>
-          <div class="shirt-size-box">
-            <div class="shirt-size">3XL</div>
-            <div class="shirt-count">1 shirt</div>
-            <div class="shirt-names">Todd</div>
-          </div>
-        </div>
-        <p style="font-size:11px;color:var(--muted);margin-top:12px">
-          13 shirts confirmed. Add Holtz (2XL) if he confirms. Budget: ~$250.
-        </p>
+      <div class="card-body card-scroll">
+        <table class="budget-table ledger-table">
+          <thead><tr><th>Driver</th><th>Vehicle</th><th class="num">Payout</th><th>Status</th></tr></thead>
+          <tbody id="ct-driver-rows">
+            <tr><td>Nene</td><td>gas</td><td>$180.00</td><td><span class="pill pill-done">✅ Venmo · Oct 12</span></td></tr>
+            <tr><td>Todd</td><td>diesel</td><td>$225.00</td><td><span class="pill pill-done">✅ PayPal · Oct 12</span></td></tr>
+            <tr><td>Jason</td><td>EV</td><td>$100.00</td><td><span class="pill pill-done">✅ PayPal · Oct 12</span></td></tr>
+            <tr><td>Zack</td><td>gas</td><td>$180.00</td><td><span class="pill pill-done">✅ PayPal · Oct 12</span></td></tr>
+            <tr><td>Phatz</td><td>EV</td><td>$100.00</td><td><span class="pill pill-done">✅ Apple Pay · Oct 12</span></td></tr>
+            <tr class="row-total"><td>Total</td><td></td><td>$785.00</td><td></td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5">Gas $180 (≈ $182 federal rate, rounded) · Diesel $225 (diesel premium, Todd's fuel was $100+) · EV $100 (wear share ≈ $85 + ≈ $15 charging).</p>
       </div>
     </div>
-
-    <!-- OPEN ITEMS -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title">📋 Open Items</div>
-      </div>
-      <div class="card-body" style="padding:12px 20px">
-        <ul class="todo-list" id="todo-list">
-          <li data-id="driving" class="done">
-            <input type="checkbox" class="todo-check" id="td-driving" checked>
-            <label for="td-driving" class="todo-text">
-              <b>Build driving plan</b>
-              <small>Car groups, arrival days, flyer pickups (Truby/Arod/Greg), Holtz timing</small>
-            </label>
-          </li>
-          <li data-id="delaholtz">
-            <input type="checkbox" class="todo-check" id="td-delaholtz">
-            <label for="td-delaholtz" class="todo-text">
-              <b>Holtz confirm</b>
-              <small>TBD — no payment yet</small>
-            </label>
-          </li>
-          <li data-id="shirts">
-            <input type="checkbox" class="todo-check" id="td-shirts">
-            <label for="td-shirts" class="todo-text">
-              <b>Order trip shirts</b>
-              <small>Finalize size (Holtz TBD), pick design, order</small>
-            </label>
-          </li>
-          <li data-id="movie">
-            <input type="checkbox" class="todo-check" id="td-movie">
-            <label for="td-movie" class="todo-text">
-              <b>Pick guy movie night selection</b>
-            </label>
-          </li>
-          <li data-id="foodrun" class="done">
-            <input type="checkbox" class="todo-check" id="td-foodrun" checked>
-            <label for="td-foodrun" class="todo-text">
-              <b>Assign food run coordinator</b>
-              <small>JJ's handling it</small>
-            </label>
-          </li>
-          <li data-id="balance">
-            <input type="checkbox" class="todo-check" id="td-balance">
-            <label for="td-balance" class="todo-text">
-              <b>Final balance charged ~Sep 23</b>
-              <small>Auto-charged 2 weeks before Oct 7 check-in</small>
-            </label>
-          </li>
-          <li data-id="ordinance">
-            <input type="checkbox" class="todo-check" id="td-ordinance">
-            <label for="td-ordinance" class="todo-text">
-              <b>Complete city ordinance steps</b>
-              <small>ID + selfie photo upload required for access info</small>
-            </label>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  </div><!-- end sidebar -->
-
-</div><!-- end page-wrap -->
+</div>
 
 <footer>
-  <p>Cabin Trip 2026 · Organized by Tony · <a href="https://github.com/tonyillig/CabinTrips" target="_blank">github.com/tonyillig/CabinTrips</a></p>
-  <p style="margin-top:6px"><a href="index.html">← Back to All Trips</a></p>
+  <p>Cabin Trip 2026 · Planning team budget · Organized by Tony</p>
+  <p style="margin-top:6px"><a href="CT2026-Crew.html">2026 trip page</a> · <a href="index.html">← All Trips</a></p>
 </footer>
 
-<script>
-  function updateCountdown() {
-    const target = new Date('2026-10-07T12:00:00');
-    const now = new Date();
-    const diff = target - now;
-    if (diff <= 0) {
-      document.getElementById('countdown-display').innerHTML =
-        '<div style="color:var(--gold-light);font-family:Oswald,sans-serif;font-size:22px;font-weight:700">' + (window.CT_BANNER || '🎉 WE\'RE AT THE CABIN') + '</div>';
-      return;
-    }
-    const days  = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const secs  = Math.floor((diff % (1000*60)) / 1000);
-    document.getElementById('cd-days').textContent  = String(days).padStart(3,'0');
-    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
-    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // Checklist — persist state in localStorage
-  function initChecklist() {
-    document.querySelectorAll('#todo-list li').forEach(li => {
-      const id = li.dataset.id;
-      const cb = li.querySelector('.todo-check');
-      if (localStorage.getItem('ct26_' + id) === '1') {
-        cb.checked = true;
-        li.classList.add('done');
-      }
-      cb.addEventListener('change', function() {
-        if (this.checked) {
-          li.classList.add('done');
-          localStorage.setItem('ct26_' + id, '1');
-        } else {
-          li.classList.remove('done');
-          localStorage.removeItem('ct26_' + id);
-        }
-      });
-    });
-  }
-  initChecklist();
-
-  // Photo carousel — fetches live from GitHub repo folder, auto-rotates
-  async function initPhotoCarousel() {
-    const carousel = document.getElementById('photo-carousel');
-    const dotsWrap = document.getElementById('photo-dots');
-    if (!carousel || !dotsWrap) return;
-
-    const REPO = 'tonyillig/CabinTrips';
-    const FOLDER = 'CT2026images';
-    let photoUrls = [];
-
-    try {
-      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}`);
-      if (!res.ok) throw new Error('folder not found');
-      const files = await res.json();
-      photoUrls = files
-        .filter(f => /\.(jpe?g|png|gif|webp)$/i.test(f.name))
-        .map(f => f.download_url);
-    } catch (err) {
-      console.warn('Photo carousel: could not load from GitHub', err);
-    }
-
-    // Fallback placeholders if the folder is empty or unreachable
-    if (photoUrls.length === 0) {
-      photoUrls = [
-        'https://images.unsplash.com/photo-1502784444187-359ac186c5bb?w=800&q=80',
-        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80',
-        'https://images.unsplash.com/photo-1517824806704-9040b037703b?w=800&q=80',
-        'https://images.unsplash.com/photo-1518602164578-cd0074062767?w=800&q=80'
-      ];
-    }
-
-    carousel.querySelectorAll('.photo-slide').forEach(el => el.remove());
-    photoUrls.forEach((url, i) => {
-      const slide = document.createElement('div');
-      slide.className = 'photo-slide' + (i === 0 ? ' active' : '');
-      slide.style.backgroundImage = `url('${url}')`;
-      carousel.insertBefore(slide, dotsWrap);
-    });
-
-    const slides = carousel.querySelectorAll('.photo-slide');
-    dotsWrap.innerHTML = '';
-    slides.forEach((_, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'photo-dot' + (i === 0 ? ' active' : '');
-      dotsWrap.appendChild(dot);
-    });
-    const dots = dotsWrap.querySelectorAll('.photo-dot');
-
-    if (slides.length > 1) {
-      let idx = 0;
-      setInterval(() => {
-        slides[idx].classList.remove('active');
-        dots[idx].classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
-        dots[idx].classList.add('active');
-      }, 4000);
-    }
-  }
-  initPhotoCarousel();
-</script>
 <script src="js/cabin-live.js"></script>
 </body>
 </html>
