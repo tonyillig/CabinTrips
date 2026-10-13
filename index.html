@@ -393,14 +393,13 @@
 </script>
 
 <header class="site-header">
-  <div class="header-eyebrow">Est. December 1999 · Idyllwild to Big Bear · An Unbroken Streak</div>
+  <div class="header-eyebrow">Established 1999 · Idyllwild to Big Bear · An Unbroken Streak</div>
   <h1>The Annual<br>Cabin Trip</h1>
-  <p class="tagline">High school friends, a mountain cabin, and 20+ years of bad decisions that keep turning out great.</p>
+  <p class="tagline">High school friends, a mountain cabin, and bad decisions that keep turning out great. Every year since 1999.</p>
 </header>
 
 <div class="stats-bar">
-  <div class="stat-chip"><b>28</b> trips since 1999</div>
-  <div class="stat-chip">Big Bear <b>7×</b></div>
+  <div class="stat-chip">Going since <b>Dec 1999</b> · <b>28</b> trips</div>
   <div class="stat-chip">🏆 3× champ: <b>Holtz</b></div>
   <div class="stat-chip"><b>10–15</b> guys/year</div>
   <div class="stat-chip">2026 champ: <b>Todd</b></div>
@@ -649,7 +648,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2011,
@@ -660,7 +660,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2010,
@@ -671,7 +672,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2009,
@@ -682,7 +684,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2008,
@@ -693,7 +696,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2007,
@@ -704,7 +708,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2006,
@@ -715,7 +720,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2005,
@@ -726,7 +732,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2004,
@@ -737,7 +744,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2003,
@@ -748,7 +756,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2002,
@@ -759,7 +768,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2001,
@@ -770,7 +780,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 2000,
@@ -781,7 +792,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "📝 details coming"
+    "note": "📝 details coming",
+    "noDrawing": true
   },
   {
     "year": 1999,
@@ -792,7 +804,8 @@ let trips = [
     "perPerson": null,
     "winner": null,
     "status": "stub",
-    "note": "🏁 The first cabin trip"
+    "note": "🏁 The first cabin trip",
+    "noDrawing": true
   }
 ];
 
@@ -843,12 +856,12 @@ function renderTrips() {
           </div>
           ${t.link ? `<a href="${t.link}" class="view-btn">View ${t.year} Trip →</a>` : ''}
         </div>
-        <div class="card-footer">
+        ${t.noDrawing ? '' : `<div class="card-footer">
           <div>
             <div class="winner-label">Cabin Drawing Winner</div>
             <div>${winnerDisplay}</div>
           </div>
-        </div>`;
+        </div>`}`;
     }
     grid.appendChild(card);
   });

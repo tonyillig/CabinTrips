@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "rev": 4,
+  "rev": 5,
   "updatedAt": "2026-10-12T19:00:00-07:00",
   "trips": [
     {
@@ -173,7 +173,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2011,
@@ -184,7 +185,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2010,
@@ -195,7 +197,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2009,
@@ -206,7 +209,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2008,
@@ -217,7 +221,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2007,
@@ -228,7 +233,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2006,
@@ -239,7 +245,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2005,
@@ -250,7 +257,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2004,
@@ -261,7 +269,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2003,
@@ -272,7 +281,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2002,
@@ -283,7 +293,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2001,
@@ -294,7 +305,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 2000,
@@ -305,7 +317,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "📝 details coming"
+      "note": "📝 details coming",
+      "noDrawing": true
     },
     {
       "year": 1999,
@@ -316,7 +329,8 @@
       "perPerson": null,
       "winner": null,
       "status": "stub",
-      "note": "🏁 The first cabin trip"
+      "note": "🏁 The first cabin trip",
+      "noDrawing": true
     }
   ],
   "trophy": [
